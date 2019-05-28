@@ -1,0 +1,5 @@
+<h4>Question Bank</h4>
+<%= form_tag import_question_banks_path, multipart: true do %>
+  <%= file_field_tag :file, required: true %>
+  <%= submit_tag "Import", class: "btn btn-success" %>
+<% end %>
