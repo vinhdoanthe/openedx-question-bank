@@ -1,0 +1,11 @@
+<problem display_name="M17">
+  <multiplechoiceresponse>
+    <label>Process of prioritizing projects and the administration and control of large sets of projects and programs is ____</label>
+    <choicegroup>
+      <choice correct="false">Project management process</choice>
+      <choice correct="false">Program management process</choice>
+      <choice correct="false">Quality Assurance management process</choice>
+      <choice correct="true">Project Portforlio management process</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

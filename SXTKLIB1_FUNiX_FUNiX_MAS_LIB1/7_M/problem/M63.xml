@@ -1,0 +1,11 @@
+<problem display_name="M63">
+  <multiplechoiceresponse>
+    <label>What is a WBS - Work Breakdown Structure?</label>
+    <choicegroup>
+      <choice correct="true">Deliverable-Oriented hierarchical decomposition of the work to be 'executed' by the team to accomplish the project objectives and create the required deliverables</choice>
+      <choice correct="false">Damage-Oriented hierarchical decomposition of the task to be 'acted' by the team to accomplish the project objectives and destroy the required deliverables</choice>
+      <choice correct="false">Deliverable-Oriented hierarchical decomposition of the work to be 'reviewed' by the team to plan the project objectives and deliver the required deliverables</choice>
+      <choice correct="false">Deliverable-Oriented unstructure map of the work to be 'executed' by the team to accomplish the project objectives and review the required deliverables</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,9 @@
+<problem display_name="E11">
+  <multiplechoiceresponse>
+    <label>Making a cup of coffee as usual can be considered as a project</label>
+    <choicegroup>
+      <choice correct="false">1</choice>
+      <choice correct="true">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

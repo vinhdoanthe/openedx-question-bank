@@ -1,0 +1,11 @@
+<problem display_name="E11">
+  <choiceresponse>
+    <label>How to kill time waster </label>
+    <checkboxgroup>
+      <choice correct="true">Discipline</choice>
+      <choice correct="true">priorities</choice>
+      <choice correct="true">Tool</choice>
+      <choice correct="false">Internet, email, social network</choice>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

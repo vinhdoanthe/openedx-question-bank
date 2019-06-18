@@ -1,0 +1,13 @@
+<library xblock-family="xblock.v1" display_name="SXTKLIB1_1M" org="FUNiX" library="FUNiX_MAS_LIB1_1M">
+  <problem url_name="M7"/>
+  <problem url_name="M8"/>
+  <problem url_name="M15"/>
+  <problem url_name="M17"/>
+  <problem url_name="M108"/>
+  <problem url_name="M109"/>
+  <problem url_name="M110"/>
+  <problem url_name="M111"/>
+  <problem url_name="M112"/>
+  <problem url_name="M1"/>
+  <problem url_name="M2"/>
+</library>

@@ -1,0 +1,11 @@
+<problem display_name="H203">
+  <multiplechoiceresponse>
+    <label>The project is completed and the final deliverable given to the customer but the customer refuses to take any action to give final acceptance on the project. The project manager should?</label>
+    <choicegroup>
+      <choice correct="false">Repeatedly ask for final acceptance</choice>
+      <choice correct="false">Ask the team for assistance</choice>
+      <choice correct="true">Document the situation</choice>
+      <choice correct="false">Do nothing because there is nothing that can be done</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

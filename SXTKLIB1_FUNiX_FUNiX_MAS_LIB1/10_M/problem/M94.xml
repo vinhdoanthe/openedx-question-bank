@@ -1,0 +1,10 @@
+<problem display_name="M94">
+  <multiplechoiceresponse>
+    <label>The roles and responsibilities need to be determined for which project stakeholders?</label>
+    <choicegroup>
+      <choice correct="false">The entire project team - anyone involved in creating the deliverables</choice>
+      <choice correct="true">All key project stakeholders - PM, project sponsor, project team and any individual and organization supporting or influencing the work.</choice>
+      <choice correct="false">the entire PMO department of the organization</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

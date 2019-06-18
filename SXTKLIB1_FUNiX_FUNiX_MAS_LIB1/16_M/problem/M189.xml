@@ -1,0 +1,17 @@
+<problem display_name="M189">
+  <multiplechoiceresponse>
+    <label>You are managing a software engineering project, when two team members come to you with a conflict. The
+lead developer has identified an important project risk: you have a subcontractor that may not deliver on time.
+Another developer doesn&#x2019;t believe that the risk is likely to happen; however, you consult the lessons learned
+from previous projects and discover that subcontractors failed to deliver their work on two previous projects.
+You decide that the risk is too big; you terminate the contract with the subcontractor, and instead hire additional
+developers to build the component. Both team members agree that this has eliminated the risk. Which of the
+following BEST describes this scenario?</label>
+    <choicegroup>
+      <choice correct="false">Transferrence</choice>
+      <choice correct="false">Mitigation</choice>
+      <choice correct="true">Avoidance</choice>
+      <choice correct="false">Acceptance</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

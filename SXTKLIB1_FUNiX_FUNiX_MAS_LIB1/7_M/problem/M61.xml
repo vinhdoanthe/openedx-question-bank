@@ -1,0 +1,11 @@
+<problem display_name="M61">
+  <multiplechoiceresponse>
+    <label>Which of the below is the description of the scope, which can easily be used as a &#x201C;skeleton&#x201D; or basis to plan the next areas (timelines, budget, etc.)?</label>
+    <choicegroup>
+      <choice correct="false">The Business Case</choice>
+      <choice correct="true">The Activity List and/or Work Breakdown Structure</choice>
+      <choice correct="false">The Scope Statement</choice>
+      <choice correct="false">The Project Charter</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

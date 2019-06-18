@@ -1,0 +1,12 @@
+<problem display_name="M76">
+  <multiplechoiceresponse>
+    <label>Which is NOT a main reason for the existence of dependencies between tasks?</label>
+    <choicegroup>
+      <choice correct="false">Logical dependency</choice>
+      <choice correct="false">Resource Constraints</choice>
+      <choice correct="false">External dependencies</choice>
+      <choice correct="false">Soft dependencies</choice>
+      <choice correct="true">Numerical dependency</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

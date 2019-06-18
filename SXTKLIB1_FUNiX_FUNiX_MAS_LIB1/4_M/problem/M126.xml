@@ -1,0 +1,12 @@
+<problem display_name="M126">
+  <multiplechoiceresponse>
+    <label>When would you want to import data from templates to a software and use it for managing your project?</label>
+    <choicegroup>
+      <choice correct="false">If you want to replicate the project structure  if you manage software projects that are similar in the structure.</choice>
+      <choice correct="true">If you want to import data in that you can collaborate and you can get more ideas.</choice>
+      <choice correct="false">If you want to import things like your task lists.</choice>
+      <choice correct="false">If you want to validate the status or duplicate data</choice>
+      <choice correct="false">All of the others</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,13 @@
+<problem display_name="E4">
+  <choiceresponse>
+    <label>Running the meeting team, we must prepare</label>
+    <checkboxgroup>
+      <choice correct="true">Purpose</choice>
+      <choice correct="true">Action item</choice>
+      <choice correct="false">get approval for leaving annual 
+</choice>
+      <choice correct="true">Meeting minutes</choice>
+      <choice correct="true">Meeting room</choice>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

@@ -1,0 +1,11 @@
+<problem display_name="E180">
+  <multiplechoiceresponse>
+    <label>Which of the following meetings is conducted at the beginning of a Sprint?</label>
+    <choicegroup>
+      <choice correct="false">Retrospect Sprint Meeting</choice>
+      <choice correct="false">Daily Standup Meeting</choice>
+      <choice correct="true">Stakeholder Meeting</choice>
+      <choice correct="false">Sprint Review Meeting</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

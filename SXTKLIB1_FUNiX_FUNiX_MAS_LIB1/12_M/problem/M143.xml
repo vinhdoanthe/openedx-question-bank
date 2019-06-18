@@ -1,0 +1,11 @@
+<problem display_name="M143">
+  <multiplechoiceresponse>
+    <label>Lessons learned documentation generally includes all of the following EXCEPT</label>
+    <choicegroup>
+      <choice correct="false">The causes of issues</choice>
+      <choice correct="true">Updates of the statement of work to reflect training and learning requirement</choice>
+      <choice correct="false">Reasoning behind the corrective action chosen</choice>
+      <choice correct="false">Other types of lessons learned about information distribution</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,11 @@
+<problem display_name="M59">
+  <multiplechoiceresponse>
+    <label>PMs need to be prepared to deal with Non-straight-forward tasks (NSF). Which of the below best describes the characteristics of such tasks:</label>
+    <choicegroup>
+      <choice correct="false">Technology is utilized - e.g. Use a link to access a folder and download a copy of a document.</choice>
+      <choice correct="false">Team members are involved - e.g. request an update on the progress from a responsible team</choice>
+      <choice correct="true">Information is not readily available and PM may need to work with people multiple times - e.g. PM needs to obtain an approval by the IT manager on their estimate of hours needed to develop a specific software.</choice>
+      <choice correct="false">Tasks that always take a lot of time.</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

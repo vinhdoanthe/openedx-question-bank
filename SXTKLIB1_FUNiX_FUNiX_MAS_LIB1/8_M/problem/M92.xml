@@ -1,0 +1,12 @@
+<problem display_name="M92">
+  <multiplechoiceresponse>
+    <label>For a project you are planning, you will need to employ 10 IT specialists from a vendor company to perform a specific software development work. Their daily rate is $500 per specialist. 15 working days will be needed. How much is needed to perform this project activity?</label>
+    <choicegroup>
+      <choice correct="false">125000</choice>
+      <choice correct="true">75000</choice>
+      <choice correct="false">55000</choice>
+      <choice correct="false">70000</choice>
+      <choice correct="false">95000</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

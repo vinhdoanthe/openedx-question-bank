@@ -1,0 +1,9 @@
+<problem display_name="E104">
+  <multiplechoiceresponse>
+    <label>In ProjectLibre, you can enter the resource even it hasn't existed in your resource pool yet.</label>
+    <choicegroup>
+      <choice correct="false">1</choice>
+      <choice correct="true">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

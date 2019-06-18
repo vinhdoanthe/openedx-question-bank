@@ -1,0 +1,9 @@
+<problem display_name="E73">
+  <multiplechoiceresponse>
+    <label>in 1979, Daniel Kahneman and Amos Birsky discovered that predictions are often wrong as people over-estimate the actual time needed to complete a future task.</label>
+    <choicegroup>
+      <choice correct="false">1</choice>
+      <choice correct="true">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

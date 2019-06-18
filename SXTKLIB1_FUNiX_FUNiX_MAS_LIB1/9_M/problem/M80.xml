@@ -1,0 +1,12 @@
+<problem display_name="M80">
+  <multiplechoiceresponse>
+    <label>What is NOT the attributes of a Critical Path?</label>
+    <choicegroup>
+      <choice correct="false">It is the longest chain of dependent activities required to complete the project</choice>
+      <choice correct="false">The delay in it will cause delays to the whole project</choice>
+      <choice correct="false">It is displayed by boxes and arrows</choice>
+      <choice correct="false">It is dynamic and can change during the project</choice>
+      <choice correct="true">Its float greater than zero</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

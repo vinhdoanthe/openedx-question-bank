@@ -1,0 +1,11 @@
+<problem display_name="H56">
+  <multiplechoiceresponse>
+    <label>Which project was initially planned to take six years to build for seven million dollars while in reality it took 16 year to build and cost 106 million dollars.</label>
+    <choicegroup>
+      <choice correct="true">Sydney Opera House</choice>
+      <choice correct="false">National Economics University main hall</choice>
+      <choice correct="false">Thang Long Bridge</choice>
+      <choice correct="false">Little Boy Atomic Bomb</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

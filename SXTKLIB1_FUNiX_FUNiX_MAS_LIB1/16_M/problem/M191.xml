@@ -1,0 +1,13 @@
+<problem display_name="M191">
+  <multiplechoiceresponse>
+    <label>You&#x2019;ve been hired by a large consulting firm to lead an accounting project. You determine the needs of the
+project and divide the work up into work packages so that you can show how all of it fits into categories. What
+are you creating?</label>
+    <choicegroup>
+      <choice correct="true">A WBS</choice>
+      <choice correct="false">A schedule</choice>
+      <choice correct="false">A Project Scope Statement</choice>
+      <choice correct="false">A contract</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

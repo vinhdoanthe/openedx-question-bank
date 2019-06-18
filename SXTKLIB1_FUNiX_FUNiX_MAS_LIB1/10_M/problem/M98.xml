@@ -1,0 +1,10 @@
+<problem display_name="M98">
+  <multiplechoiceresponse>
+    <label>You are the client of a software development project for an on-line banking platform. What quality characteristic would be the most important to you?</label>
+    <choicegroup>
+      <choice correct="false">The speed with which a standard payment is made</choice>
+      <choice correct="false">The user-friendly interface of the software</choice>
+      <choice correct="true">The security of funds to which on-line access will be given.</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

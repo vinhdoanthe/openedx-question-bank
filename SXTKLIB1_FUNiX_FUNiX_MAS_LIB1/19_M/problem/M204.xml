@@ -1,0 +1,11 @@
+<problem display_name="M204">
+  <multiplechoiceresponse>
+    <label>A project should be terminated for all of the following reasons except:</label>
+    <choicegroup>
+      <choice correct="true">Lack of team synergy necessary to achieve top quality.</choice>
+      <choice correct="false">The project no longer meets the company&#x2019;s objectives.</choice>
+      <choice correct="false">The resources are not available to complete project activities.</choice>
+      <choice correct="false">Project funding has been significantly reduced.</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,11 @@
+<problem display_name="M26">
+  <multiplechoiceresponse>
+    <label>What is a description of project management job?</label>
+    <choicegroup>
+      <choice correct="true">Who oversees the process of planning, executing and delegating responsibilities around an organization's IT persuits and goals</choice>
+      <choice correct="false">Who is responsible for designing, developing and implementing software solutions to address complex business issues, and providing technical leadership within the IT department</choice>
+      <choice correct="false">Who oversees many aspects of a campaign throughout the entire lifespan of a product, service or idea. For example: conducting research and analysing data to identify and define audiences</choice>
+      <choice correct="false">Who maintains and enhances the organization's human resources by planning, implementing, and evaluating employee relations and human resources policies, programs, and practices.</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

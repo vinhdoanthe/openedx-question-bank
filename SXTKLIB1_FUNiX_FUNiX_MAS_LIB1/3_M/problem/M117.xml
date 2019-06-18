@@ -1,0 +1,12 @@
+<problem display_name="M117">
+  <multiplechoiceresponse>
+    <label>Which process group performed by project team to complete the work defined and to create deliverables to satisfy project requirements?</label>
+    <choicegroup>
+      <choice correct="false">Initiating</choice>
+      <choice correct="false">Planning</choice>
+      <choice correct="true">Executing</choice>
+      <choice correct="false">Monitoring and Controlling</choice>
+      <choice correct="false">Closing</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

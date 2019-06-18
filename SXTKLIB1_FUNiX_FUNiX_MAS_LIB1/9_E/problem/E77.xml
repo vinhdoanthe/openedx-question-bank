@@ -1,0 +1,11 @@
+<problem display_name="E77">
+  <multiplechoiceresponse>
+    <label>If a task will be started after another task's ending, it is called a _____ relationship.</label>
+    <choicegroup>
+      <choice correct="false">Start to Start</choice>
+      <choice correct="false">Start to Finish</choice>
+      <choice correct="false">Finish to Finish</choice>
+      <choice correct="true">Finish to Start</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

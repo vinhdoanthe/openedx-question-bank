@@ -1,0 +1,10 @@
+<problem display_name="M148">
+  <multiplechoiceresponse>
+    <label>What should a PM do, when an issue arises and the project is at risk?</label>
+    <choicegroup>
+      <choice correct="true">The PM has to asses the situation well and follow a structured approach in resolving the problems</choice>
+      <choice correct="false">The PM has to immediately communicate to the Sponsor that the project will not meet the goal</choice>
+      <choice correct="false">The PM always prepares and excellent plan, so there is not way significant issues can arise</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

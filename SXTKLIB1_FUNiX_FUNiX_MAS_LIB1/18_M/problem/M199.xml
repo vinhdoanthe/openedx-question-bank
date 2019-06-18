@@ -1,0 +1,12 @@
+<problem display_name="M199">
+  <multiplechoiceresponse>
+    <label>In an Agile environment, what is the main responsibility of a tester?</label>
+    <choicegroup>
+      <choice correct="false">Create test scenarios and test cases</choice>
+      <choice correct="false">Finding bugs</choice>
+      <choice correct="false">Create automation scripts</choice>
+      <choice correct="false">Send test execution reports to the stakeholders</choice>
+      <choice correct="true">There is no role as a Tester in Scrum</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

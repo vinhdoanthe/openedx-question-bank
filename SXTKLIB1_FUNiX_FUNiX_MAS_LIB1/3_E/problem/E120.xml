@@ -1,0 +1,9 @@
+<problem display_name="E120">
+  <multiplechoiceresponse>
+    <label>At planning process group, The Project Manager formally completes the project by getting official approval and sign-off from the sponsor; discusses with project team and stakeholders on the lesson learnt</label>
+    <choicegroup>
+      <choice correct="true">1</choice>
+      <choice correct="false">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

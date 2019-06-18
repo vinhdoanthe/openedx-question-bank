@@ -1,0 +1,11 @@
+<problem display_name="M82">
+  <multiplechoiceresponse>
+    <label>What type of dependency exists between the following 2 activities:  A) go to the supermarket; B) prepare dinner</label>
+    <choicegroup>
+      <choice correct="false">Resource</choice>
+      <choice correct="true">Logical</choice>
+      <choice correct="false">External</choice>
+      <choice correct="false">Soft</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,11 @@
+<problem display_name="M72">
+  <multiplechoiceresponse>
+    <label>To which activity should the PM add more buffer, compared to the rest?</label>
+    <choicegroup>
+      <choice correct="false">Activity A: a junior team member is given a task with which the team has a lot of experience from past projects</choice>
+      <choice correct="false">Activity B: an experienced team member will be responsible for a task that has not been done before. Activity B is not among the most critical ones for the project</choice>
+      <choice correct="false">Activity C: it is one of the most important for the project and is given to an experienced team member, who was competed many similar tasks successfully.</choice>
+      <choice correct="true">Activity D: it is going to be performed for the first time and it is very difficult to plan, as it includes high levels of uncertainty.</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

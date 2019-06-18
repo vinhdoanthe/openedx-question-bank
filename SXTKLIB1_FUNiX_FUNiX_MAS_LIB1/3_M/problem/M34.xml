@@ -1,0 +1,12 @@
+<problem display_name="M34">
+  <multiplechoiceresponse>
+    <label>Which process group defines overall objectives, budget and time frame of a new project?</label>
+    <choicegroup>
+      <choice correct="true">Initiating</choice>
+      <choice correct="false">Planning</choice>
+      <choice correct="false">Executing</choice>
+      <choice correct="false">Monitoring and Controlling</choice>
+      <choice correct="false">Closing</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

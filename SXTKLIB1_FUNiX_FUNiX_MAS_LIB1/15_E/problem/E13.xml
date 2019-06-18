@@ -1,0 +1,11 @@
+<problem display_name="E13">
+  <choiceresponse>
+    <label>What to do when your project into trouble</label>
+    <checkboxgroup>
+      <choice correct="true">Interview with Stakeholder</choice>
+      <choice correct="true">Review Project Plan to find the trouble and effect</choice>
+      <choice correct="true">Re plan</choice>
+      <choice correct="false">No thing</choice>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

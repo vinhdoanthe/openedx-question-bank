@@ -1,0 +1,11 @@
+<problem display_name="M187">
+  <multiplechoiceresponse>
+    <label>Verification of project deliverables occurs during which process?</label>
+    <choicegroup>
+      <choice correct="false">Create WBS</choice>
+      <choice correct="false">Develop project charter</choice>
+      <choice correct="true">Close Project or Phase</choice>
+      <choice correct="false">Develop preliminary project scope statement</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

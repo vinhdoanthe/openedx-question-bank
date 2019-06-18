@@ -1,0 +1,41 @@
+<problem display_name="E166">
+  <multiplechoiceresponse>
+    <label>The Audit Process include:</label>
+    <choicegroup>
+      <choice correct="false">1. Conduct the Audit
+2. Summarise the Audit
+3. Present the result
+4. Determinse the action plan
+5. schedule the follow up
+6. Repeat</choice>
+      <choice correct="false">1. Plan the Audit
+2. Conduct the Audit
+3. Summarise the Audit
+4. Present the result
+5. Determinse the action plan
+6. schedule the follow up
+7. Repeat</choice>
+      <choice correct="true">1. Plan the Audit
+2. Conduct the Audit
+3. Summarise the Audit
+4. Present the result
+5. Determinse the action plan
+6. schedule the follow up
+</choice>
+      <choice correct="false">1. Plan the Audit
+2. Conduct the Audit
+3. Summarise the Audit
+4. Present the result
+5. Determinse the action plan
+6. Repeat</choice>
+      <choice correct="false">1. Plan the Audit
+2. Determinse the action plan
+3. Summarise the Audit
+4. Conduct the Audit
+5. Present the result
+6. schedule the follow up
+7. Repeat
+</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

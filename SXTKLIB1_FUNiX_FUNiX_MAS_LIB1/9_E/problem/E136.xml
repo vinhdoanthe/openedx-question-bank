@@ -1,0 +1,9 @@
+<problem display_name="E136">
+  <multiplechoiceresponse>
+    <label>The delays to non-critical path will halt the overall timeline.</label>
+    <choicegroup>
+      <choice correct="false">1</choice>
+      <choice correct="true">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,9 @@
+<problem display_name="E87">
+  <multiplechoiceresponse>
+    <label>You must forget any planned holidays of your human resources and you can check the status of project any time, because your staff can send you an important email even that they are enjoying their time at the beach</label>
+    <choicegroup>
+      <choice correct="false">1</choice>
+      <choice correct="true">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

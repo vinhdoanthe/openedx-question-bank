@@ -1,0 +1,11 @@
+<problem display_name="E7">
+  <choiceresponse>
+    <label>To manage Project Task, PM should</label>
+    <checkboxgroup>
+      <choice correct="true">Look at the task in project plan daily</choice>
+      <choice correct="true">Review which tasks are compled, going , Pending</choice>
+      <choice correct="false">Have finishing with friends at the weekend</choice>
+      <choice correct="true">Check if  the owners of those action on target with their commitments </choice>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

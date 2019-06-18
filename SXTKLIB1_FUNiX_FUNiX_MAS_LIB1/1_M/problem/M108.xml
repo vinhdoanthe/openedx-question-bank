@@ -1,0 +1,10 @@
+<problem display_name="M108">
+  <multiplechoiceresponse>
+    <label>fundamental knowledge suach as management  of project's critical areas, effective communication, work with tools and documents, business analysis skills are categorized into ____</label>
+    <choicegroup>
+      <choice correct="true">Project management and business knowledge</choice>
+      <choice correct="false">People and workflow management skills</choice>
+      <choice correct="false">Strategy and leadership skills</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

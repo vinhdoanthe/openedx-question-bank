@@ -1,0 +1,9 @@
+<problem display_name="E78">
+  <multiplechoiceresponse>
+    <label>If a task will be started when another task is started, it is a Finish to Start relationship</label>
+    <choicegroup>
+      <choice correct="false">1</choice>
+      <choice correct="true">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

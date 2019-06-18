@@ -1,0 +1,10 @@
+<problem display_name="M110">
+  <multiplechoiceresponse>
+    <label>Negotiation, managing the project toward the strategic objectives, influencing shareholders and promoting the values and benefits of the project are included in _____</label>
+    <choicegroup>
+      <choice correct="false">Project management and business knowledge</choice>
+      <choice correct="false">People and workflow management skills</choice>
+      <choice correct="true">Strategy and leadership skills</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

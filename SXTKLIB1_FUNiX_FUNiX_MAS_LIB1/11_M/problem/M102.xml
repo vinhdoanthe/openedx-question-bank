@@ -1,0 +1,11 @@
+<problem display_name="M102">
+  <multiplechoiceresponse>
+    <label>What is RBS?</label>
+    <choicegroup>
+      <choice correct="false">RBS is Relationship Branding Structure which is used to identify what part of the brand someone works in</choice>
+      <choice correct="true">RBS is Resource Breakdown Structure which is used to identify what part of the organization someone works in</choice>
+      <choice correct="false">RBS is Risk Balancing System which is used to identify what risk in the organization someone works in</choice>
+      <choice correct="false">RBS is Resource Balancing System which is used to verify what part of the organization someone works in</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

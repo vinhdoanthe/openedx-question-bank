@@ -1,0 +1,11 @@
+<problem display_name="M100">
+  <multiplechoiceresponse>
+    <label>When you create a network diagram, at the beginning, before you can complete all network diagram, what must you know?</label>
+    <choicegroup>
+      <choice correct="true">What "Done" looks like for the project</choice>
+      <choice correct="false">What "Fun" looks like for the project</choice>
+      <choice correct="false">What "Done" wouldn't be fine in the project</choice>
+      <choice correct="false">What will be gone before the project completed</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

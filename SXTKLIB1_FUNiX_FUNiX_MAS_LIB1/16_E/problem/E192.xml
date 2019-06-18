@@ -1,0 +1,11 @@
+<problem display_name="E192">
+  <multiplechoiceresponse>
+    <label>The task A must finish before the Task B start, to show this constrain we use </label>
+    <choicegroup>
+      <choice correct="false">Name</choice>
+      <choice correct="false">Duration</choice>
+      <choice correct="false">Start, Finish</choice>
+      <choice correct="true">Predecessors</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

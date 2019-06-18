@@ -1,0 +1,9 @@
+<problem display_name="E25">
+  <multiplechoiceresponse>
+    <label>If you are a techie in IT, you can't become a project manager.</label>
+    <choicegroup>
+      <choice correct="false">1</choice>
+      <choice correct="true">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

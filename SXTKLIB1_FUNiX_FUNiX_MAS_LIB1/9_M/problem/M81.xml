@@ -1,0 +1,11 @@
+<problem display_name="M81">
+  <multiplechoiceresponse>
+    <label>You are refurbishing the livingroom. The work can be grouped into 3 activities: A) Remove old furniture and wall coverings; B) Select new sofa for the livingroom; C) Install new livingroom furniture. Which 2 are dependent and what is the type of their dependency?</label>
+    <choicegroup>
+      <choice correct="false">Finish A to Start B</choice>
+      <choice correct="false">Start A to Finish C</choice>
+      <choice correct="true">Finish A to Start C</choice>
+      <choice correct="false">Start B to Finish A</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

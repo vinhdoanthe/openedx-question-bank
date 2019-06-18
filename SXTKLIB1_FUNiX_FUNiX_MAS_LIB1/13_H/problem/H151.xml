@@ -1,0 +1,10 @@
+<problem display_name="H151">
+  <multiplechoiceresponse>
+    <label>The same project, where the issue with the 8 employees wanting to leave has continued. After having meetings with them, 3 decide to stay with the company. Although you suppose most of them leave for a position that is paid better, with your project team, you go through the Read step, trying to assess why so many employees want to leave, just 2 months after the start. Surprisingly, only 1 out of the 8 explains the salary as the main reason for leaving. 6 out of 8 share that they were expecting a different kind of work and responsibilities when starting. What would you do to Respond and overcome the issues from happening again?</label>
+    <choicegroup>
+      <choice correct="false">Update the hiring process and make HR team have a dedicated time with each candidate to explain well the requireents and responsibilities of the position</choice>
+      <choice correct="false">Have sessions with the remaining 22 employees, check for any other people that have the same concern and try to close the expectation gap and prevent others from leaving</choice>
+      <choice correct="true">All of the above</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

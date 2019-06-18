@@ -1,0 +1,17 @@
+<problem display_name="M66">
+  <multiplechoiceresponse>
+    <label>To estimate a project, how we will do it?
+Pick the step from following list:
+   1. Define Scope
+   2. Determine Time
+   3. Analyse Scope
+   4. Define Quality
+   5. Estimate Cost</label>
+    <choicegroup>
+      <choice correct="true">1, 2 and 5</choice>
+      <choice correct="false">2, 3 and 4</choice>
+      <choice correct="false">2, 3 and 5</choice>
+      <choice correct="false">1, 3 and 5</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

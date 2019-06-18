@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
+  require 'fileutils'
+  require 'minitar'
+  require 'zlib'
+
   module QuestionType
-    CHECKBOX = 'CHECKBOX'
-    MULTIPLE_CHOICE = 'MULTIPLE_CHOICE'
-    NUMERICAL = 'NUMERICAL'
-    TEXT_INPUT = 'TEXT_INPUT'
+    CHECKBOX = 'checkbox'
+    MULTIPLE_CHOICE = 'multiple_choice'
+    NUMERICAL = 'numerical'
+    TEXT_INPUT = 'text_input'
   end
 
   module DifficultLevel
@@ -14,38 +18,75 @@ class Question < ApplicationRecord
     EASY = 'E'
   end
 
+  ## Default sheet name
+  module DefaultSheetName
+    LIBRARY_DESCRIPTION = 'Library Description'
+    CHECKBOXES = 'Checkboxes'
+    MULTIPLE_CHOICE_DROPDOWN = 'Multiple Choice-Drop Down'
+    NUMERICAL_INPUT = 'Numerical Input'
+    TEXT_INPUT = 'Text Input'
+  end
+
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
-    # Sheet 1: LIBRARY_DESCRIPTION
-    lib_des_sheet = spreadsheet.sheet('Library Description')
-    lib_name = lib_des_sheet.a1
-    lib_org = lib_des_sheet.a2
-    lib_code = lib_des_sheet.a3
+    sheet_names = spreadsheet.sheets
+    p sheet_names
+    error_questions = []
 
-    puts "#{lib_name} - #{lib_org} - #{lib_code}"
+    # Sheet 1: LIBRARY_DESCRIPTION
+    if sheet_names.include?(DefaultSheetName::LIBRARY_DESCRIPTION)
+      lib_des_sheet = spreadsheet.sheet(DefaultSheetName::LIBRARY_DESCRIPTION)
+      lib_name = lib_des_sheet.a1
+      lib_org = lib_des_sheet.a2
+      lib_code = lib_des_sheet.a3
+    else
+      error = DefaultSheetName::LIBRARY_DESCRIPTION + 'do not existed in the imported file'
+      error_questions += error
+    end
 
     # Sheet 2: Checkboxes questions
-    spreadsheet.default_sheet = 'Checkboxes'
-    checkbox_questions = read_checkbox spreadsheet
-    puts "checkbox_questions #{checkbox_questions.inspect}"
+    if sheet_names.include?(DefaultSheetName::CHECKBOXES)
+      spreadsheet.default_sheet = DefaultSheetName::CHECKBOXES
+      checkbox_questions, error = read_checkbox spreadsheet
+    else
+      error = DefaultSheetName::CHECKBOXES + 'do not existed in the imported file'
+    end
+    error_questions += error
 
     # Sheet 3: Multiple Choice-Drop Down questions
-    spreadsheet.default_sheet = 'Multiple Choice-Drop Down'
-    multiple_choice_dropdown_questions = read_multiple_choice spreadsheet
-    puts "multiple_choice_dropdown_questions #{multiple_choice_dropdown_questions.inspect}"
+    if sheet_names.include?(DefaultSheetName::MULTIPLE_CHOICE_DROPDOWN)
+      spreadsheet.default_sheet = DefaultSheetName::MULTIPLE_CHOICE_DROPDOWN
+      multiple_choice_dropdown_questions, error = read_multiple_choice spreadsheet
+      error_questions += error
+    else
+      error = DefaultSheetName::MULTIPLE_CHOICE_DROPDOWN + 'do not existed in the imported file'
+    end
+    error_questions += error
 
     # Sheet 4: Numerical Input questions
-    spreadsheet.default_sheet = 'Numerical Input'
-    numerical_input_questions = read_numerical spreadsheet
-    puts "numerical_input_questions #{numerical_input_questions.inspect}"
+    if sheet_names.include?(DefaultSheetName::NUMERICAL_INPUT)
+      spreadsheet.default_sheet = DefaultSheetName::NUMERICAL_INPUT
+      numerical_input_questions, error = read_numerical spreadsheet
+      error_questions += error
+    else
+      error = DefaultSheetName::NUMERICAL_INPUT + 'do not existed in the imported file'
+    end
+    error_questions += error
 
     # Sheet 5: Text Input questions
-    spreadsheet.default_sheet = 'Text Input'
-    text_input_questions = read_text_input spreadsheet
-    puts "text_input_questions #{text_input_questions.inspect}"
+    if sheet_names.include?(DefaultSheetName::TEXT_INPUT)
+      spreadsheet.default_sheet = DefaultSheetName::TEXT_INPUT
+      text_input_questions, error = read_text_input spreadsheet
+      error_questions += error
+    else
+      error = DefaultSheetName::TEXT_INPUT + 'do not existed in the imported file'
+    end
+    error_questions += error
 
     # Generating question banks
     generate_question_banks lib_name, lib_org, lib_code, checkbox_questions, multiple_choice_dropdown_questions, numerical_input_questions, text_input_questions
+    # Return error questions
+    error_questions
   end
 
   def self.open_spreadsheet(file)
@@ -63,9 +104,12 @@ class Question < ApplicationRecord
 
   def self.generate_question_banks(lib_name, lib_org, lib_code, checkbox_questions, multiple_choice_dropdown_questions, numerical_input_questions, text_input_questions)
     list_by_lesson = group_by_lesson checkbox_questions, multiple_choice_dropdown_questions, numerical_input_questions, text_input_questions
-    seperated_list = []
+    separated_list = []
 
     list_by_lesson.each do |list|
+      next if list.nil?
+      next if list.empty?
+
       list_hard = []
       list_medium = []
       list_easy = []
@@ -78,193 +122,459 @@ class Question < ApplicationRecord
           list_hard.append question
         end
       end
-      seperated_list.append list_easy
-      seperated_list.append list_medium
-      seperated_list.append list_hard
+      separated_list.append list_easy
+      separated_list.append list_medium
+      separated_list.append list_hard
     end
 
-    list_targz_files = []
-    seperated_list.each do |list_questions|
-      targz_file = generate_question_bank lib_name, lib_org, lib_code, list_questions
-      list_targz_files.append targz_file
+    list_tar_gz_files = []
+    master_folder = "#{lib_name}_#{lib_org}_#{lib_code}"
+    FileUtils.mkdir_p master_folder.to_s
+
+    separated_list.each do |list_questions|
+      unless list_questions.empty?
+        tar_gz_file = generate_question_bank lib_name, lib_org, lib_code, list_questions
+        list_tar_gz_files.append tar_gz_file
+      end
     end
 
-    archive_and_download list_targz_files
+    archive_and_download list_tar_gz_files
   end
 
-  def self.generate_question_bank lib_name, lib_org, lib_code, questions
+  def self.generate_question_bank(lib_name, lib_org, lib_code, questions)
     unless questions.nil?
       unless questions.empty?
+        first_question = questions.first
+        append_code = first_question[:lesson].to_s + first_question[:difficult_level].to_s
+        zip_file_name = first_question[:lesson].to_s + '_' + first_question[:difficult_level].to_s
+        folder_name = "#{lib_name}_#{lib_org}_#{lib_code}/#{zip_file_name}"
+        FileUtils.mkdir_p folder_name.to_s
         # Step 1: Generate folder containing problems and each problem in xml file
+        problem_folder = "#{folder_name}/problem"
+        FileUtils.mkdir_p problem_folder.to_s
 
+        questions.each do |question|
+          parse_to_xml(question, problem_folder)
+        end
+
+        new_lib_name = lib_name + '_' + append_code
+        new_lib_code = lib_code + '_' + append_code
         # Step 2: Generate library description in xml file, policies folder and assets.json file
-
+        generate_lib_des new_lib_name, lib_org, new_lib_code, questions, folder_name
         # Step 3: Archive to tar.gz file
+        zip_recursive folder_name, zip_file_name
       end
     end
   end
 
-  def self.archive_and_download list_targz_files
-
+  def self.archive_and_download(list_targz_files)
+    ;
   end
 
-  def self.parse_to_xml(question, type)
-    case type
+  def self.parse_to_xml(question, folder)
+    # logger.info 'parse_to_xml'
+    # logger.info question.inspect
+
+    case question[:question_type]
     when QuestionType::CHECKBOX
-      write_xml_checkbox question
+      logger.info 'parse_to_xml_checkbox'
+      logger.info question.inspect
+      write_xml_checkbox question, folder
     when QuestionType::MULTIPLE_CHOICE
-      write_xml_multiple_choice question
+      logger.info 'parse_to_xml_multiple_choice'
+      write_xml_multiple_choice question, folder
     when QuestionType::NUMERICAL
-      write_xml_numerical question
+      logger.info 'parse_to_xml_numerical_input'
+      write_xml_numerical question, folder
     when QuestionType::TEXT_INPUT
-      write_xml_text_input question
+      logger.info 'parse_to_xml_text_input'
+      write_xml_text_input question, folder
     end
   end
 
   def self.read_checkbox(sheet)
-    puts "sheet #{sheet.inspect}"
     questions = []
+    errors = []
     sheet.each_row_streaming(offset: 1) do |row|
       next if row[1].nil?
       next if row[1].cell_value.nil?
 
-      question = {
-          tt: row[1].cell_value,
-          course_code: row[2].cell_value,
-          lesson: row[3].cell_value,
-          lo: row[4].cell_value,
-          content: row[5].cell_value,
-          difficult_level: row[6].cell_value,
-          choice1: row[7].cell_value,
-          choice2: row[8].cell_value,
-          choice3: row[9].cell_value,
-          choice4: row[10].cell_value,
-          choice5: row[11].cell_value,
-          answer: row[12].cell_value,
-          hint: row[13].cell_value,
-          feedback1: row[14].cell_value,
-          feedback2: row[15].cell_value,
-          feedback3: row[16].cell_value,
-          feedback4: row[17].cell_value,
-          feedback5: row[18].cell_value,
-          question_type: QuestionType::CHECKBOX
-      }
-      questions.append question
+      question = parse_checkbox_question(row)
+
+      if valid?(question)
+        questions.append question
+      else
+        errors.append errors?(question)
+      end
     end
-    questions
+    # logging
+    logger.info 'checkbox question size'
+    logger.info questions.size
+    logger.info questions.inspect
+    [questions, errors]
   end
 
   def self.read_multiple_choice(sheet)
     questions = []
+    errors = []
     sheet.each_row_streaming(offset: 1) do |row|
       next if row[1].nil?
       next if row[1].cell_value.nil?
 
-      question = {
-          tt: row[1].cell_value,
-          course_code: row[2].cell_value,
-          lesson: row[3].cell_value,
-          lo: row[4].cell_value,
-          content: row[5].cell_value,
-          difficult_level: row[6].cell_value,
-          choice1: row[7].cell_value,
-          choice2: row[8].cell_value,
-          choice3: row[9].cell_value,
-          choice4: row[10].cell_value,
-          choice5: row[11].cell_value,
-          answer: row[12].cell_value,
-          hint: row[13].cell_value,
-          feedback1: row[14].cell_value,
-          feedback2: row[15].cell_value,
-          feedback3: row[16].cell_value,
-          feedback4: row[17].cell_value,
-          feedback5: row[18].cell_value,
-          status: row[19].cell_value,
-          question_type: QuestionType::MULTIPLE_CHOICE
-      }
-      questions.append question
+      question = parse_multiple_choice_dropdown_question(row)
+
+      if valid?(question)
+        questions.append question
+      else
+        errors.append errors?(question)
+      end
     end
-    questions
+    # logging
+    logger.info 'multiple size question size'
+    logger.info questions.size
+    logger.info questions.inspect
+    [questions, errors]
   end
 
   def self.read_numerical(sheet)
     questions = []
+    errors = []
     sheet.each_row_streaming(offset: 1) do |row|
       next if row[1].nil?
       next if row[1].cell_value.nil?
 
-      question = {
-          tt: row[1].cell_value,
-          course_code: row[2].cell_value,
-          lesson: row[3].cell_value,
-          lo: row[4].cell_value,
-          content: row[5].cell_value,
-          difficult_level: row[6].cell_value,
-          answer: row[7].cell_value,
-          hint: row[8].cell_value,
-          feedback1: row[9].cell_value,
-          feedback2: row[10].cell_value,
-          feedback3: row[11].cell_value,
-          feedback4: row[12].cell_value,
-          feedback5: row[13].cell_value,
-          status: row[14].cell_value,
-          question_type: QuestionType::NUMERICAL
-      }
-      questions.append question
+      question = parse_numerical_input_question(row)
+
+      if valid?(question)
+        questions.append question
+      else
+        errors.append errors?(question)
+      end
     end
-    questions
+    # logging
+    # logger.info 'numerical question size'
+    # logger.info questions.size
+    # logger.info questions.inspect
+    [questions, errors]
   end
 
   def self.read_text_input(sheet)
     questions = []
+    errors = []
     sheet.each_row_streaming(offset: 1) do |row|
       next if row[1].nil?
       next if row[1].cell_value.nil?
 
-      question = {
-          tt: row[1].cell_value,
-          course_code: row[2].cell_value,
-          lesson: row[3].cell_value,
-          lo: row[4].cell_value,
-          content: row[5].cell_value,
-          difficult_level: row[6].cell_value,
-          answer: row[7].cell_value,
-          hint: row[8].cell_value,
-          feedback1: row[9].cell_value,
-          feedback2: row[10].cell_value,
-          feedback3: row[11].cell_value,
-          feedback4: row[12].cell_value,
-          feedback5: row[13].cell_value,
-          status: row[14].cell_value,
-          question_type: QuestionType::TEXT_INPUT
-      }
-      questions.append question
+      question = parse_text_input_question(row)
+
+      if valid?(question)
+        questions.append question
+      else
+        errors.append errors?(question)
+      end
     end
-    questions
+    # logging
+    # logger.info 'text input question size'
+    # logger.info questions.size
+    # logger.info questions.inspect
+    [questions, errors]
   end
 
-  def self.write_xml_checkbox(question)
-    ;
+  def self.write_xml_checkbox(question, folder)
+    true_answer_index = question[:answer].split(',')
+    true_answer_index = true_answer_index.map(&:strip)
+
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.problem('display_name' => question[:difficult_level] + question[:tt]) do
+        xml.choiceresponse do
+          xml.label question[:content]
+          xml.checkboxgroup do
+            ## Option 1
+            if question[:choice1].present?
+              xml.choice('correct' => true_answer_index.include?(1.to_s) ? 'true' : 'false') do
+                xml.text(question[:choice1])
+                if question[:feedback1].present?
+                  xml.choicehint('selected' => 'false') do
+                    xml.text(question[:feedback1])
+                  end
+                end
+              end
+            end
+            ## Option 2
+            if question[:choice2].present?
+              xml.choice('correct' => true_answer_index.include?(2.to_s) ? 'true' : 'false') do
+                xml.text(question[:choice2])
+                if question[:feedback2].present?
+                  xml.choicehint('selected' => 'false') do
+                    xml.text(question[:feedback2])
+                  end
+                end
+              end
+            end
+            ## Option 3
+            if question[:choice3].present?
+              xml.choice('correct' => true_answer_index.include?(3.to_s) ? 'true' : 'false') do
+                xml.text(question[:choice3])
+                if question[:feedback3].present?
+                  xml.choicehint('selected' => 'false') do
+                    xml.text(question[:feedback3])
+                  end
+                end
+              end
+            end
+            ## Option 4
+            if question[:choice4].present?
+              xml.choice('correct' => true_answer_index.include?(4.to_s) ? 'true' : 'false') do
+                xml.text(question[:choice4])
+                if question[:feedback4].present?
+                  xml.choicehint('selected' => 'false') do
+                    xml.text(question[:feedback4])
+                  end
+                end
+              end
+            end
+            ## Option 5
+            if question[:choice5].present?
+              xml.choice('correct' => true_answer_index.include?(5.to_s) ? 'true' : 'false') do
+                xml.text(question[:choice5])
+                if question[:feedback5].present?
+                  xml.choicehint('selected' => 'false') do
+                    xml.text(question[:feedback5])
+                  end
+                end
+              end
+            end
+          end
+        end
+        if question[:hint].present?
+          xml.demandhint do
+            xml.hint question[:hint]
+          end
+        end
+      end
+    end
+
+    # logger.info 'builder xml'
+    # logger.info builder.doc.root.to_xml
+
+    filename = folder + '/' + question[:difficult_level] + question[:tt] + '.xml'
+    begin
+      outfile = File.new(filename, 'w+')
+      File.write(outfile, builder.doc.root.to_xml)
+      outfile.close
+        # logger.info 'create file sucessfullyy'
+    rescue Errno::ENOENT => e
+      logger.info "Caught the exception: #{e}"
+    end
   end
 
-  def self.write_xml_multiple_choice(question)
-    ;
+  def self.write_xml_multiple_choice(question, folder)
+    true_answer_index = question[:answer].split(',').first ## if have more than 1, choose first
+    true_answer_index = true_answer_index.strip.to_i
+
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.problem('display_name' => question[:difficult_level] + question[:tt]) do
+        xml.multiplechoiceresponse do
+          xml.label question[:content]
+          xml.choicegroup do
+            ## Option 1
+            if question[:choice1].present?
+              xml.choice('correct' => true_answer_index == 1 ? 'true' : 'false') do
+                xml.text(question[:choice1])
+                if question[:feedback1].present?
+                  xml.choicehint do
+                    xml.text(question[:feedback1])
+                  end
+                end
+              end
+            end
+            ## Option 2
+            if question[:choice2].present?
+              xml.choice('correct' => true_answer_index == 2 ? 'true' : 'false') do
+                xml.text(question[:choice2])
+                if question[:feedback2].present?
+                  xml.choicehint do
+                    xml.text(question[:feedback2])
+                  end
+                end
+              end
+            end
+            ## Option 3
+            if question[:choice3].present?
+              xml.choice('correct' => true_answer_index == 3 ? 'true' : 'false') do
+                xml.text(question[:choice3])
+                if question[:feedback3].present?
+                  xml.choicehint do
+                    xml.text(question[:feedback3])
+                  end
+                end
+              end
+            end
+            ## Option 4
+            if question[:choice4].present?
+              xml.choice('correct' => true_answer_index == 4 ? 'true' : 'false') do
+                xml.text(question[:choice4])
+                if question[:feedback4].present?
+                  xml.choicehint do
+                    xml.text(question[:feedback4])
+                  end
+                end
+              end
+            end
+            ## Option 5
+            if question[:choice5].present?
+              xml.choice('correct' => true_answer_index == 5 ? 'true' : 'false') do
+                xml.text(question[:choice5])
+                if question[:feedback5].present?
+                  xml.choicehint do
+                    xml.text(question[:feedback5])
+                  end
+                end
+              end
+            end
+          end
+        end
+        if question[:hint].present?
+          xml.demandhint do
+            xml.hint question[:hint]
+          end
+        end
+      end
+    end
+
+    # logger.info 'builder xml multiple choice dropdown'
+    # logger.info builder.doc.root.to_xml
+
+    filename = folder + '/' + question[:difficult_level] + question[:tt] + '.xml'
+    begin
+      outfile = File.new(filename, 'w+')
+      File.write(outfile, builder.doc.root.to_xml)
+      outfile.close
+        # logger.info 'create file successfully'
+    rescue Errno::ENOENT => e
+      logger.info "Caught the exception: #{e}"
+    end
   end
 
-  def self.write_xml_numerical(question)
-    ;
+  def self.write_xml_numerical(question, folder)
+
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.problem('display_name' => question[:difficult_level] + question[:tt]) do
+        if question[:answer].present?
+          xml.numericalresponse('answer' => question[:answer].strip) do
+            xml.label question[:content]
+            xml.responseparam('type' => 'tolerance', 'default' => '5')
+            xml.formulaequationinput
+            if question[:feedback1].present?
+              xml.correcthint do
+                xml.text(question[:feedback1])
+              end
+            end
+          end
+        end
+        if question[:hint].present?
+          xml.demandhint do
+            xml.hint question[:hint]
+          end
+        end
+      end
+    end
+
+    # logger.info 'builder xml numerical input'
+    # logger.info builder.doc.root.to_xml
+
+    filename = folder + '/' + question[:difficult_level] + question[:tt] + '.xml'
+    begin
+      outfile = File.new(filename, 'w+')
+      File.write(outfile, builder.doc.root.to_xml)
+      outfile.close
+        # logger.info 'create file successfully'
+    rescue Errno::ENOENT => e
+      logger.info "Caught the exception: #{e}"
+    end
   end
 
-  def self.write_xml_text_input(question)
-    ;
+  def self.write_xml_text_input(question, folder)
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.problem('display_name' => question[:difficult_level] + question[:tt]) do
+        xml.stringresponse('answer' => question[:answer].strip) do
+          xml.label question[:content]
+          if question[:feedback1].present?
+            xml.correcthint question[:feedback1]
+          end
+          xml.textline('size' => '20')
+        end
+        if question[:hint].present?
+          xml.demandhint do
+            xml.hint question[:hint]
+          end
+        end
+      end
+    end
+
+    # logger.info 'builder xml text input'
+    # logger.info builder.doc.root.to_xml
+
+    filename = folder + '/' + question[:difficult_level] + question[:tt] + '.xml'
+    begin
+      outfile = File.new(filename, 'w+')
+      File.write(outfile, builder.doc.root.to_xml)
+      outfile.close
+      # logger.info 'create file successfully'
+    rescue Errno::ENOENT => e
+      logger.info "Caught the exception: #{e}"
+    end
   end
 
-  def self.generate_lib_des(lib_name, lib_org, lib_code, problems_list)
-    ;
+  def self.generate_lib_des(lib_name, lib_org, lib_code, problems_list, folder)
+    if problems_list.empty?
+      return
+    end
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.library('xblock-family' => 'xblock.v1', 'display_name' => lib_name, 'org' => lib_org, 'library' => lib_code) do
+        problems_list.each do |problem|
+          xml.problem('url_name' => problem[:difficult_level].to_s + problem[:tt].to_s)
+        end
+      end
+    end
+    # logger.info 'builder xml text input'
+    # logger.info builder.doc.root.to_xml
+
+    # Create library.xml
+    filename = folder + '/' + 'library.xml'
+    begin
+      outfile = File.new(filename, 'w+')
+      File.write(outfile, builder.doc.root.to_xml)
+      outfile.close
+      # logger.info 'create file successfully'
+    rescue Errno::ENOENT => e
+      logger.info "Caught the exception: #{e}"
+    end
+
+    # Create policies folder & policies.json
+    policies_folder = folder + '/' + 'policies'
+    FileUtils.mkdir_p policies_folder
+
+    filename = policies_folder + '/' + 'assets.json'
+    begin
+      outfile = File.new(filename, 'w+')
+      File.write(outfile, '{}')
+      outfile.close
+      # logger.info 'create policies file successfully'
+    rescue Errno::ENOENT => e
+      logger.info "Caught the exception: #{e}"
+    end
   end
 
-  def self.zip_recursive(directory)
-    ;
+  def self.zip_recursive(directory, filename)
+    # logger.info directory
+    full_file_name = directory + filename + '.tar.gz'
+    # logger.info full_file_name
+    zip_file = File.new(full_file_name, 'w+')
+    zip_file.close
+    # Minitar.pack(directory, Zlib::GzipWriter.new(File.open(full_file_name), 'wb'))
+    Minitar.pack(directory, File.open(full_file_name, 'wb'))
+    # full_file_name
   end
 
   def self.group_by_lesson(checkbox_questions, multiple_choice_dropdown_questions, numerical_input_questions, text_input_questions)
@@ -275,39 +585,146 @@ class Question < ApplicationRecord
       if lesson_list.include? question[:lesson]
       else
         lesson_list.append(question[:lesson])
-        list_by_lesson[question[:lesson]] = []
+        list_by_lesson[question[:lesson].to_i] = []
       end
-      list_by_lesson[question[:lesson]].append(question)
+      list_by_lesson[question[:lesson].to_i].append(question)
     end
 
     multiple_choice_dropdown_questions.each do |question|
       if lesson_list.include? question[:lesson]
       else
         lesson_list.append(question[:lesson])
-        list_by_lesson[question[:lesson]] = []
+        list_by_lesson[question[:lesson].to_i] = []
       end
-      list_by_lesson[question[:lesson]].append(question)
+      list_by_lesson[question[:lesson].to_i].append(question)
     end
 
     numerical_input_questions.each do |question|
       if lesson_list.include? question[:lesson]
       else
         lesson_list.append(question[:lesson])
-        list_by_lesson[question[:lesson]] = []
+        list_by_lesson[question[:lesson].to_i] = []
       end
-      list_by_lesson[question[:lesson]].append(question)
+      list_by_lesson[question[:lesson].to_i].append(question)
     end
 
     text_input_questions.each do |question|
       if lesson_list.include? question[:lesson]
       else
         lesson_list.append(question[:lesson])
-        list_by_lesson[question[:lesson]] = []
+        list_by_lesson[question[:lesson].to_i] = []
       end
-      list_by_lesson[question[:lesson]].append(question)
+      list_by_lesson[question[:lesson].to_i].append(question)
     end
 
     list_by_lesson
   end
 
+  def self.parse_checkbox_question(row)
+    {
+        tt: row[0].cell_value,
+        course_code: row[1].cell_value,
+        lesson: row[2].cell_value,
+        lo: row[3].cell_value,
+        content: row[4].cell_value,
+        difficult_level: row[5].cell_value,
+        choice1: row[6].nil? ? '' : row[6].cell_value,
+        choice2: row[7].nil? ? '' : row[7].cell_value,
+        choice3: row[8].nil? ? '' : row[8].cell_value,
+        choice4: row[9].nil? ? '' : row[9].cell_value,
+        choice5: row[10].nil? ? '' : row[10].cell_value,
+        answer: row[11].nil? ? '' : row[11].cell_value,
+        hint: row[12].nil? ? '' : row[12].cell_value,
+        feedback1: row[13].nil? ? '' : row[13].cell_value,
+        feedback2: row[14].nil? ? '' : row[14].cell_value,
+        feedback3: row[15].nil? ? '' : row[15].cell_value,
+        feedback4: row[16].nil? ? '' : row[16].cell_value,
+        feedback5: row[17].nil? ? '' : row[17].cell_value,
+        question_type: QuestionType::CHECKBOX
+    }
+  end
+
+  def self.parse_multiple_choice_dropdown_question(row)
+    {
+        tt: row[0].cell_value,
+        course_code: row[1].cell_value,
+        lesson: row[2].cell_value,
+        lo: row[3].cell_value,
+        content: row[4].cell_value,
+        difficult_level: row[5].cell_value,
+        choice1: row[6].nil? ? '' : row[6].cell_value,
+        choice2: row[7].nil? ? '' : row[7].cell_value,
+        choice3: row[8].nil? ? '' : row[8].cell_value,
+        choice4: row[9].nil? ? '' : row[9].cell_value,
+        choice5: row[10].nil? ? '' : row[10].cell_value,
+        answer: row[11].nil? ? '' : row[11].cell_value,
+        hint: row[12].nil? ? '' : row[12].cell_value,
+        feedback1: row[13].nil? ? '' : row[13].cell_value,
+        feedback2: row[14].nil? ? '' : row[14].cell_value,
+        feedback3: row[15].nil? ? '' : row[15].cell_value,
+        feedback4: row[16].nil? ? '' : row[16].cell_value,
+        feedback5: row[17].nil? ? '' : row[17].cell_value,
+        status: row[18].nil? ? '' : row[18].cell_value,
+        question_type: QuestionType::MULTIPLE_CHOICE
+    }
+  end
+
+  def self.parse_numerical_input_question(row)
+    {
+        tt: row[0].cell_value,
+        course_code: row[1].cell_value,
+        lesson: row[2].cell_value,
+        lo: row[3].cell_value,
+        content: row[4].cell_value,
+        difficult_level: row[5].cell_value,
+        answer: row[6].nil? ? '' : row[6].cell_value,
+        hint: row[7].nil? ? '' : row[7].cell_value,
+        feedback1: row[8].nil? ? '' : row[8].cell_value,
+        feedback2: row[9].nil? ? '' : row[9].cell_value,
+        feedback3: row[10].nil? ? '' : row[10].cell_value,
+        feedback4: row[11].nil? ? '' : row[11].cell_value,
+        feedback5: row[12].nil? ? '' : row[12].cell_value,
+        status: row[13].nil? ? '' : row[13].cell_value,
+        question_type: QuestionType::NUMERICAL
+    }
+  end
+
+  def self.parse_text_input_question(row)
+    {
+        tt: row[0].cell_value,
+        course_code: row[1].cell_value,
+        lesson: row[2].cell_value,
+        lo: row[3].cell_value,
+        content: row[4].cell_value,
+        difficult_level: row[5].cell_value,
+        answer: row[6].nil? ? '' : row[6].cell_value,
+        hint: row[7].nil? ? '' : row[7].cell_value,
+        feedback1: row[8].nil? ? '' : row[8].cell_value,
+        feedback2: row[9].nil? ? '' : row[9].cell_value,
+        feedback3: row[10].nil? ? '' : row[10].cell_value,
+        feedback4: row[11].nil? ? '' : row[11].cell_value,
+        feedback5: row[12].nil? ? '' : row[12].cell_value,
+        status: row[13].nil? ? '' : row[13].cell_value,
+        question_type: QuestionType::TEXT_INPUT
+    }
+  end
+
+  def self.valid?(question)
+    if question[:tt].present? && question[:course_code].present? &&
+        question[:lesson].present? && question[:lo].present? && question[:content].present? &&
+        question[:difficult_level].present? && question[:answer].present?
+      return true
+    end
+    false
+  end
+
+  def self.errors?(question)
+    if question[:tt].present? && question[:course_code].present? &&
+        question[:lesson].present? && question[:lo].present? && question[:content].present? &&
+        question[:difficult_level].present? && question[:answer].present?
+      nil
+    else
+      "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:lo]} - #{question[:content]} - #{question[:difficult_level]}"
+    end
+  end
 end

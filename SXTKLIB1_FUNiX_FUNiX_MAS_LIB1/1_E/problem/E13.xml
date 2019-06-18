@@ -1,0 +1,11 @@
+<problem display_name="E13">
+  <multiplechoiceresponse>
+    <label>The work which is temporary - having predetermine start and end date - and produce unique output can be categorized to _____</label>
+    <choicegroup>
+      <choice correct="true">A Project</choice>
+      <choice correct="false">An Operation</choice>
+      <choice correct="false">A Fan</choice>
+      <choice correct="false">A Plan</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,12 @@
+<problem display_name="M3">
+  <choiceresponse>
+    <label>Communication activity has many potential dimensions, including</label>
+    <checkboxgroup>
+      <choice correct="true">Internal (within the project) and external (customer, other projects, the media, the public),</choice>
+      <choice correct="true">Formal (reports, memos, briefings) and informal (emails, ad-hoc discussions),</choice>
+      <choice correct="true">Vertical (up and down the organization) and horizontal (with peers),</choice>
+      <choice correct="true">Official (newsletters, annual report) and unofficial (off the record communications),</choice>
+      <choice correct="true">Written and oral, and Verbal and non-verbal (voice inflections, body language)</choice>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

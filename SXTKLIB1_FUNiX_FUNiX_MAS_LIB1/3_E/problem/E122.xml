@@ -1,0 +1,11 @@
+<problem display_name="E122">
+  <multiplechoiceresponse>
+    <label>What is NOT related to the business case?</label>
+    <choicegroup>
+      <choice correct="false">It is the feasibility study to prove that the project is worth the organization&#x2019;s time and resources</choice>
+      <choice correct="false">It lists the objectives of the project</choice>
+      <choice correct="true">It is prepared by Project sponsor and senior leader. Once it is approved, it will become the official sign off to start the project</choice>
+      <choice correct="false">It is the case studies which are learned from the project and is collected from team members by the project manager</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

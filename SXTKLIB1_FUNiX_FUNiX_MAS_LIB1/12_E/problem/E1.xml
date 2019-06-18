@@ -1,0 +1,12 @@
+<problem display_name="E1">
+  <choiceresponse>
+    <label>What should PM plan the kick off meeting</label>
+    <checkboxgroup>
+      <choice correct="true">Book the meeting rooms</choice>
+      <choice correct="true">Send invites with planty of notice </choice>
+      <choice correct="false">Have dinner with family</choice>
+      <choice correct="true">Prepare Project document</choice>
+      <choice correct="false">Get Approval the result of projects </choice>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

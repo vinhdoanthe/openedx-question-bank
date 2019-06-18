@@ -1,0 +1,11 @@
+<problem display_name="M52">
+  <multiplechoiceresponse>
+    <label>What is Planning?</label>
+    <choicegroup>
+      <choice correct="false">Planning is the process of designing, deciding, evaluating and developing in advance.</choice>
+      <choice correct="false">Planning is the process of deciding, evaluating, developing and testing in advance</choice>
+      <choice correct="true">Planning is the process of analyzing, evaluating, deciding and organizing activities in advance</choice>
+      <choice correct="false">Planning is the process of evaluating, testing, analyzing and designing activities in advance</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

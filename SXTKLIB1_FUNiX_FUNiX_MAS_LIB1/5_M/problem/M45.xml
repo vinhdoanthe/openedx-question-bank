@@ -1,0 +1,12 @@
+<problem display_name="M45">
+  <multiplechoiceresponse>
+    <label>The scope must be _____</label>
+    <choicegroup>
+      <choice correct="true">Scruntinized and realistic</choice>
+      <choice correct="false">Security and realistic</choice>
+      <choice correct="false">Security and relative</choice>
+      <choice correct="false">Scruntinized and relative</choice>
+      <choice correct="false">Safe and Security</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,11 @@
+<problem display_name="E142">
+  <multiplechoiceresponse>
+    <label>All of the following are information distribution tools EXCEPT</label>
+    <choicegroup>
+      <choice correct="false">Hard-copy document distribution</choice>
+      <choice correct="false">Electronic communication and conferencing tools</choice>
+      <choice correct="true">Inputting project performance data into a spreadsheet</choice>
+      <choice correct="false">Electronic tools for project management</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

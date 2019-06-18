@@ -1,0 +1,11 @@
+<problem display_name="M10">
+  <choiceresponse>
+    <label>Risks are a very important factor in any project. How can a PM determine and manage key risks in a specific project</label>
+    <checkboxgroup>
+      <choice correct="true">From the project charter, where the sponsor has determined the high-level risks</choice>
+      <choice correct="true">Through discussion with all relevant project stakeholders</choice>
+      <choice correct="true">By applying their project management experience and pro-actively suggesting risk that need to be tracked</choice>
+      <choice correct="false">Non of Above</choice>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

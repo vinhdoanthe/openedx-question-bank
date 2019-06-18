@@ -1,0 +1,10 @@
+<problem display_name="M116">
+  <multiplechoiceresponse>
+    <label>The training dealing with IT Service Management and how you deliver of end to end IT Services is ____ training</label>
+    <choicegroup>
+      <choice correct="true">ITPM</choice>
+      <choice correct="false">ITIL</choice>
+      <choice correct="false">ITSM</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

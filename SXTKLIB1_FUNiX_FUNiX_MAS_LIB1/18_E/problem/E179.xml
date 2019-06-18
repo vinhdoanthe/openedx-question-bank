@@ -1,0 +1,11 @@
+<problem display_name="E179">
+  <multiplechoiceresponse>
+    <label>which of the following is a phase in Scrum projects</label>
+    <choicegroup>
+      <choice correct="true">Release</choice>
+      <choice correct="false">Starting up</choice>
+      <choice correct="false">Delivering</choice>
+      <choice correct="false">Monitoring</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

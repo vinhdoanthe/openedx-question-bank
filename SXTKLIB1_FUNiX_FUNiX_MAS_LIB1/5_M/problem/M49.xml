@@ -1,0 +1,11 @@
+<problem display_name="M49">
+  <multiplechoiceresponse>
+    <label>In feasibility study, the sponsor must ask some questions, which of the following is NOT stated in this course.</label>
+    <choicegroup>
+      <choice correct="false">Can the organization provide the needed budget, time, employees and the management attention so the project can be executed?</choice>
+      <choice correct="true">Can project manager whistle-blow the secret of the project?</choice>
+      <choice correct="false">Do the organization possess the needed expertise?</choice>
+      <choice correct="false">Do partner companies need to be involved?</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

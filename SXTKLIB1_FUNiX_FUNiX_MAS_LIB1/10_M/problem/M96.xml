@@ -1,0 +1,10 @@
+<problem display_name="M96">
+  <multiplechoiceresponse>
+    <label>The quality requirements in a project are:</label>
+    <choicegroup>
+      <choice correct="false">Very similar between the different projects</choice>
+      <choice correct="true">Strictly specific for each project, as the scope is unique</choice>
+      <choice correct="false">Provided by Project Sponsor</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

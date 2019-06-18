@@ -1,0 +1,11 @@
+<problem display_name="M178">
+  <multiplechoiceresponse>
+    <label>Which of the following best defines a project?</label>
+    <choicegroup>
+      <choice correct="true">A collaborative enterprise to either create new products or services or to deliver results as defined in the Project Vision Statement.</choice>
+      <choice correct="false">A group of related projects, with the objective to deliver business outcomes as defined in the Program Vision Statement</choice>
+      <choice correct="false">A collaborative enterprise to sustain the improvements introduced in the operations of an organization.</choice>
+      <choice correct="false">A group of related programs, with the objective to deliver business outcomes as defined in the Portfolio Vision Statement</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,14 @@
+<problem display_name="M84">
+  <multiplechoiceresponse>
+    <label>What should a PM consider when preparing the budget?
+
+
+
+</label>
+    <choicegroup>
+      <choice correct="false">All costs the company will incur during the project period</choice>
+      <choice correct="true">All project related activities that can potentially generate financial expenditures</choice>
+      <choice correct="false">Only the external payments to vendors, needed for the project</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

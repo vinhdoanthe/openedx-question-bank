@@ -1,0 +1,11 @@
+<problem display_name="M47">
+  <multiplechoiceresponse>
+    <label>What is project feasibility study?</label>
+    <choicegroup>
+      <choice correct="true">A high-level analysis of the scope and resource to determine if the success of the project is feasible.</choice>
+      <choice correct="false">A detail-level analysis of the money budget to determine if the success of the project is feasible.</choice>
+      <choice correct="false">A high-level design of the product and resource to check if the success of the project is feasible.</choice>
+      <choice correct="false">A detail work of determine whether the scope of project is good or not</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

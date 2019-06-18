@@ -1,0 +1,12 @@
+<problem display_name="M46">
+  <multiplechoiceresponse>
+    <label>Who performs the feasibility study?</label>
+    <choicegroup>
+      <choice correct="false">The sponsor, The project manager and the team</choice>
+      <choice correct="false">The project manager and his teammate</choice>
+      <choice correct="false">The sponsor only</choice>
+      <choice correct="false">The project manager only</choice>
+      <choice correct="true">The project sponsor and project manager</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,17 @@
+<problem display_name="H90">
+  <multiplechoiceresponse>
+    <label>What is the correct sequence of these steps in quality management?
+   A. Define the quality standards and requirements
+   B. Plan how, when and who will measure quality   
+   C. Setting the actual, and actionable, targets for the criteria.
+   D. Make adjustments to their project constraints
+   E. Finalized the quality plan</label>
+    <choicegroup>
+      <choice correct="true">A-&gt;C-&gt;B-&gt;E-&gt;D</choice>
+      <choice correct="false">A-&gt;B-&gt;C-&gt;D-&gt;E</choice>
+      <choice correct="false">B-&gt;A-&gt;C-&gt;D-&gt;E</choice>
+      <choice correct="false">B-&gt;C-&gt;D-&gt;E-&gt;A</choice>
+      <choice correct="false">C-&gt;D-&gt;E-&gt;B-&gt;A</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

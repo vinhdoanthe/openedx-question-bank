@@ -1,0 +1,11 @@
+<problem display_name="E74">
+  <multiplechoiceresponse>
+    <label>People are generally bad at planning and they often fall victims to the _____ underestimating the time or resources they need to complete a task.</label>
+    <choicegroup>
+      <choice correct="true">Planning fallacy </choice>
+      <choice correct="false">Planning accuracy</choice>
+      <choice correct="false">Controlling fallacy</choice>
+      <choice correct="false">Controlling accuracy</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

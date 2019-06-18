@@ -1,0 +1,9 @@
+<problem display_name="E12">
+  <multiplechoiceresponse>
+    <label>Developing a new software is an example of projects</label>
+    <choicegroup>
+      <choice correct="true">1</choice>
+      <choice correct="false">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

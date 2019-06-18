@@ -1,0 +1,12 @@
+<problem display_name="H23">
+  <multiplechoiceresponse>
+    <label>Which is NOT included in 5 key issues of Project Management for IT that need focus to solve?</label>
+    <choicegroup>
+      <choice correct="false">Multiple Vendors/Partners</choice>
+      <choice correct="false">Complex Dependencies</choice>
+      <choice correct="false">Changing versions/releases</choice>
+      <choice correct="false">Integrated Testing</choice>
+      <choice correct="true">Surprise many times</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,11 @@
+<problem display_name="H168">
+  <multiplechoiceresponse>
+    <label>In rolling wave planning</label>
+    <choicegroup>
+      <choice correct="false">Focus is maintained on long-term objectives, allowing near-term objectives to be rolled out as part of the ongoing wave of activities.</choice>
+      <choice correct="true">The work to be accomplished in the near term is planned in detail and future work is planned at a higher level of the WBS</choice>
+      <choice correct="false">The work far in the future is planned in detail for WBS components that are at a low level of the WBS</choice>
+      <choice correct="false">A wave of detailed activities is planned during strategic planning to ensure that WBS deliverables and project milestones are achieved</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

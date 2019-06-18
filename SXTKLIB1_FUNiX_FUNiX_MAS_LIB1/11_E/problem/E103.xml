@@ -1,0 +1,9 @@
+<problem display_name="E103">
+  <multiplechoiceresponse>
+    <label>In ProjectLibre, you must enter existing resources from your resource pool separated by the list separator character ";".</label>
+    <choicegroup>
+      <choice correct="true">1</choice>
+      <choice correct="false">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

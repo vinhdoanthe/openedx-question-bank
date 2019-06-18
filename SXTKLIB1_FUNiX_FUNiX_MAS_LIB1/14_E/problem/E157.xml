@@ -1,0 +1,11 @@
+<problem display_name="E157">
+  <multiplechoiceresponse>
+    <label>Risks can be evaluated through which key characteristics?</label>
+    <choicegroup>
+      <choice correct="false">Probability of occurrence and the contingency plans.</choice>
+      <choice correct="false">Stakeholders involved and their expectations.</choice>
+      <choice correct="false">How likely it is for the risk to become a reality and how much would it then impact the project</choice>
+      <choice correct="true">All of the above</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

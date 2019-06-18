@@ -1,0 +1,11 @@
+<problem display_name="M35">
+  <multiplechoiceresponse>
+    <label>What is NOT the benefits of using project management software?</label>
+    <choicegroup>
+      <choice correct="false">It helps all you have to document.</choice>
+      <choice correct="false">It is repeatible</choice>
+      <choice correct="false">It is consistent</choice>
+      <choice correct="true">It duplicate data</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

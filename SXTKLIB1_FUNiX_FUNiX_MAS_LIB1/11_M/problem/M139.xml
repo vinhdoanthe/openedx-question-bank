@@ -1,0 +1,20 @@
+<problem display_name="M139">
+  <multiplechoiceresponse>
+    <label>In Project Scheduling, What is last checking item that you will check with the schedule?
+A. Make sure all tasks have resources assigned to them
+B. Make sure the calendar is appropriate, and has appropriate holidays in it
+C. Make sure vacations are accounted for somewhere and there are no resources on vacations
+D. Make sure that the scheduling budget makes sense
+E. Make sure there are no resources that are entered into the project management tool multiple times
+F. Make sure that there are no dangling tasks
+G. Make sure that the resources, your resources on your schedule are not over allocated
+</label>
+    <choicegroup>
+      <choice correct="false">A</choice>
+      <choice correct="false">C</choice>
+      <choice correct="true">D</choice>
+      <choice correct="false">E</choice>
+      <choice correct="false">G</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,11 @@
+<problem display_name="M75">
+  <multiplechoiceresponse>
+    <label>The term, which is used to describes the behaviour whereby people believe they are less at risk of something than somebody else, is _____</label>
+    <choicegroup>
+      <choice correct="true">Optimism bias</choice>
+      <choice correct="false">Permissism bias</choice>
+      <choice correct="false">Human bias</choice>
+      <choice correct="false">Most likely bias</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

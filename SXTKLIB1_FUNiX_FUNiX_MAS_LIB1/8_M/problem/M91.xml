@@ -1,0 +1,10 @@
+<problem display_name="M91">
+  <multiplechoiceresponse>
+    <label>What is the process the PM must follow when preparing the project budget?</label>
+    <choicegroup>
+      <choice correct="false">Obtain the target budget from the Project Charter and distribute it evenly throughout the project period.</choice>
+      <choice correct="true">Define the cost-generating items from the activity list, make a detailed estimation of the financial resources needed and compile the overall project budget</choice>
+      <choice correct="false">Define the cost-generating activities. Analyze the dependencies and tasks.</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,11 @@
+<problem display_name="M58">
+  <multiplechoiceresponse>
+    <label>An in-depth and comprehensive Planning process, benefits projects by:</label>
+    <choicegroup>
+      <choice correct="false">Optimizing the order of the project activities</choice>
+      <choice correct="false">Reducing the risk of misunderstandings and delays</choice>
+      <choice correct="false">Reducing the potential impact of uncertainties and risks on the project success</choice>
+      <choice correct="true">All of the others</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

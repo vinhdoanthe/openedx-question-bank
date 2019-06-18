@@ -1,0 +1,11 @@
+<problem display_name="M202">
+  <multiplechoiceresponse>
+    <label>Which one of the following is the last step of project closing?</label>
+    <choicegroup>
+      <choice correct="false">Client has accepted the product</choice>
+      <choice correct="true">Archives are complete</choice>
+      <choice correct="false">Client appreciates your product</choice>
+      <choice correct="false">Lessons learnt are documented</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

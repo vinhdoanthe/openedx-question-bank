@@ -1,0 +1,10 @@
+<problem display_name="M97">
+  <multiplechoiceresponse>
+    <label>Gathering the quality requirements is often a Non-straight-forward process for a Project Manager, as they need to work with various stakeholders and reach an agreement among all parties. Which of the below stakeholders do you believe should always be involved in the Quality planning process?</label>
+    <choicegroup>
+      <choice correct="true">The client of the project, individual, department or organization who will use the final output of the project</choice>
+      <choice correct="false">The legal department of the organization</choice>
+      <choice correct="false">The senior management of the organization</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

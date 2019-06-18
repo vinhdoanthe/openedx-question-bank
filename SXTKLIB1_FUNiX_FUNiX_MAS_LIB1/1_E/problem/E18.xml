@@ -1,0 +1,9 @@
+<problem display_name="E18">
+  <multiplechoiceresponse>
+    <label>The Project Managers commit to achieve a certain result and then deliver this commitment. </label>
+    <choicegroup>
+      <choice correct="true">1</choice>
+      <choice correct="false">0</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

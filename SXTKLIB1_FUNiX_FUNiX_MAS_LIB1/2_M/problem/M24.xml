@@ -1,0 +1,12 @@
+<problem display_name="M24">
+  <multiplechoiceresponse>
+    <label>What is NOT a core knowledge area of Project Management?</label>
+    <choicegroup>
+      <choice correct="true">Human Resource Management</choice>
+      <choice correct="false">Scope Management</choice>
+      <choice correct="false">Time Management</choice>
+      <choice correct="false">Cost Management</choice>
+      <choice correct="false">Quality Management</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

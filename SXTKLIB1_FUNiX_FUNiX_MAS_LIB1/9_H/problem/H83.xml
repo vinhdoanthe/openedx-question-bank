@@ -1,0 +1,11 @@
+<problem display_name="H83">
+  <multiplechoiceresponse>
+    <label>What type of dependency  could exists between the following 2 activities:  A) Meet the existing coach of the soccer team and explain his contract is being terminated due to bad performance in the championship; B) Announce the name of the new coach to the media</label>
+    <choicegroup>
+      <choice correct="false">Resource</choice>
+      <choice correct="false">Logical</choice>
+      <choice correct="false">Buffer</choice>
+      <choice correct="true">Soft</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

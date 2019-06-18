@@ -1,0 +1,11 @@
+<problem display_name="M40">
+  <multiplechoiceresponse>
+    <label>What is a critical path?</label>
+    <choicegroup>
+      <choice correct="false">A simple task path which contains largest number of tasks for project</choice>
+      <choice correct="false">A sequence of tasks which is added up the shortest overall duration for the project</choice>
+      <choice correct="true">A sequence of tasks which is added up the longest overall duration for the project</choice>
+      <choice correct="false">A simple task path which contains smallest number of tasks for project</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

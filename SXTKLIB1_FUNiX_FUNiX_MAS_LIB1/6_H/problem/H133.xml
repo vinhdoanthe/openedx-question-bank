@@ -1,0 +1,17 @@
+<problem display_name="H133">
+  <multiplechoiceresponse>
+    <label>Which is the order of following steps in project plan creation?
+    A. Breakdown Deliverables.
+    B. Assign Resources.
+    C. Create Project Plan.
+    D. Create Timeline
+    E. Determine Dependencies, Critical Path, Issues, Risks and Resources</label>
+    <choicegroup>
+      <choice correct="false">C -&gt; A -&gt; E -&gt; D -&gt; B</choice>
+      <choice correct="false">A -&gt; E -&gt; D -&gt; B -&gt; C</choice>
+      <choice correct="true">E -&gt; D -&gt; B -&gt; C -&gt; A</choice>
+      <choice correct="false">D -&gt; B -&gt; A -&gt; C -&gt; E</choice>
+      <choice correct="false">C -&gt; B -&gt; A -&gt; E -&gt; D</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

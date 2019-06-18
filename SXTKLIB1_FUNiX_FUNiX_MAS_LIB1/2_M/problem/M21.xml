@@ -1,0 +1,12 @@
+<problem display_name="M21">
+  <multiplechoiceresponse>
+    <label>Which of following is the stage which mainly include the contract negotiation and the requirement analyzing?</label>
+    <choicegroup>
+      <choice correct="false">Initiation</choice>
+      <choice correct="true">Definition</choice>
+      <choice correct="false">Transition</choice>
+      <choice correct="false">Termination</choice>
+      <choice correct="false">Construction</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

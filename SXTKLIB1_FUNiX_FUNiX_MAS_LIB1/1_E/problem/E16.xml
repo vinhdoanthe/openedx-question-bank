@@ -1,0 +1,12 @@
+<problem display_name="E16">
+  <multiplechoiceresponse>
+    <label>Which of the following are NOT the base on which the management will choose the project to take priority and deserve?</label>
+    <choicegroup>
+      <choice correct="false">The urgency and/or The Time and Budget</choice>
+      <choice correct="false">The most value to the company financial and non-financial</choice>
+      <choice correct="false">The worthwhile return for the business</choice>
+      <choice correct="false">The alignment with the business strategy</choice>
+      <choice correct="true">None of the others</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

@@ -1,0 +1,11 @@
+<problem display_name="M50">
+  <multiplechoiceresponse>
+    <label>What is NOT belong to the project charter?</label>
+    <choicegroup>
+      <choice correct="false">a high-level document which is easy to understand and contains all the fundamental information about the project: project objectives, scope, stakeholder list, budget, etc.</choice>
+      <choice correct="true">a detail-level document which  contains all the  information about the project: project objectives, scope, stakeholder list, budget, etc.</choice>
+      <choice correct="false">a document is done by the project owner</choice>
+      <choice correct="false">A document is used to officially appoint the project manager</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>

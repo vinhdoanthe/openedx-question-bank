@@ -1,0 +1,12 @@
+<problem display_name="E14">
+  <choiceresponse>
+    <label>The Task in the Project Plan should have</label>
+    <checkboxgroup>
+      <choice correct="true">Start time</choice>
+      <choice correct="true">end time</choice>
+      <choice correct="true">Duration</choice>
+      <choice correct="true">Resource</choice>
+      <choice correct="true">Name</choice>
+    </checkboxgroup>
+  </choiceresponse>
+</problem>

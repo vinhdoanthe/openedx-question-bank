@@ -1,0 +1,11 @@
+<problem display_name="E10">
+  <multiplechoiceresponse>
+    <label>Which is the triple constraint of project management?</label>
+    <choicegroup>
+      <choice correct="true">Time, Scope, Cost</choice>
+      <choice correct="false">Time, Quality, Cost</choice>
+      <choice correct="false">Scope, Quality, Cost</choice>
+      <choice correct="false">Time, Scope, Quality</choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+</problem>
