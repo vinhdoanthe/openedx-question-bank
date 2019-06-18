@@ -4,7 +4,9 @@ require "capistrano/setup"
 # Include default deployment tasks
 require "capistrano/deploy"
 
-require 'capistrano/rails'
+# require 'capistrano/rails'
+require 'capistrano/bundler'
+require 'capistrano/rails/assets'
 require 'capistrano/passenger'
 
 # If you are using rbenv add these lines:
