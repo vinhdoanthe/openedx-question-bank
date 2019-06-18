@@ -27,6 +27,8 @@ class Question < ApplicationRecord
     TEXT_INPUT = 'Text Input'
   end
 
+  ZIP_FOLDER = 'exported_library/library'
+
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     sheet_names = spreadsheet.sheets
@@ -86,7 +88,29 @@ class Question < ApplicationRecord
     # Generating question banks
     generate_question_banks lib_name, lib_org, lib_code, checkbox_questions, multiple_choice_dropdown_questions, numerical_input_questions, text_input_questions
     # Return error questions
-    error_questions
+    create_zip_with_errors(ZIP_FOLDER, error_questions)
+  end
+
+  def self.create_zip_with_errors zip_folder, errors
+    unless errors.empty?
+      logger.info errors.inspect
+      er_file_name = zip_folder + '/' + 'errors.txt'
+      er_file = File.new(er_file_name, 'w+')
+      # errors.each do |error|
+      #   File.write(er_file, error.inspect)
+      #   File.write(er_file, '\n')
+      # end
+      File.write(er_file, errors.inspect)
+      er_file.close
+
+      library_folder = 'exported_library/library'
+      library_file_name = 'exported_library/library.zip'
+
+      zip_file = File.new(library_file_name, 'w+')
+      zip_file.close
+      Minitar.pack(library_folder, File.open(library_file_name, 'wb'))
+      library_file_name
+    end
   end
 
   def self.open_spreadsheet(file)
@@ -168,7 +192,17 @@ class Question < ApplicationRecord
   end
 
   def self.archive_and_download(list_targz_files)
-    ;
+    library_folder = 'exported_library/library'
+    library_file_name = 'exported_library/library.zip'
+    FileUtils.mkdir_p library_folder
+    list_targz_files.each do |file|
+      FileUtils.mv(file, library_folder)
+    end
+
+    zip_file = File.new(library_file_name, 'w+')
+    zip_file.close
+    Minitar.pack(library_folder, File.open(library_file_name, 'wb'))
+    library_file_name
   end
 
   def self.parse_to_xml(question, folder)
@@ -520,7 +554,7 @@ class Question < ApplicationRecord
       outfile = File.new(filename, 'w+')
       File.write(outfile, builder.doc.root.to_xml)
       outfile.close
-      # logger.info 'create file successfully'
+        # logger.info 'create file successfully'
     rescue Errno::ENOENT => e
       logger.info "Caught the exception: #{e}"
     end
@@ -546,7 +580,7 @@ class Question < ApplicationRecord
       outfile = File.new(filename, 'w+')
       File.write(outfile, builder.doc.root.to_xml)
       outfile.close
-      # logger.info 'create file successfully'
+        # logger.info 'create file successfully'
     rescue Errno::ENOENT => e
       logger.info "Caught the exception: #{e}"
     end
@@ -560,7 +594,7 @@ class Question < ApplicationRecord
       outfile = File.new(filename, 'w+')
       File.write(outfile, '{}')
       outfile.close
-      # logger.info 'create policies file successfully'
+        # logger.info 'create policies file successfully'
     rescue Errno::ENOENT => e
       logger.info "Caught the exception: #{e}"
     end
@@ -574,7 +608,7 @@ class Question < ApplicationRecord
     zip_file.close
     # Minitar.pack(directory, Zlib::GzipWriter.new(File.open(full_file_name), 'wb'))
     Minitar.pack(directory, File.open(full_file_name, 'wb'))
-    # full_file_name
+    full_file_name
   end
 
   def self.group_by_lesson(checkbox_questions, multiple_choice_dropdown_questions, numerical_input_questions, text_input_questions)
@@ -724,7 +758,7 @@ class Question < ApplicationRecord
         question[:difficult_level].present? && question[:answer].present?
       nil
     else
-      "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:lo]} - #{question[:content]} - #{question[:difficult_level]}"
+      "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:lo]} - #{question[:difficult_level]}"
     end
   end
 end
