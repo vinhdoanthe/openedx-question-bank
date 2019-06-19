@@ -96,12 +96,13 @@ class Question < ApplicationRecord
       logger.info errors.inspect
       er_file_name = zip_folder + '/' + 'errors.txt'
       er_file = File.new(er_file_name, 'w+')
-      # errors.each do |error|
-      #   File.write(er_file, error.inspect)
-      #   File.write(er_file, '\n')
-      # end
-      File.write(er_file, errors.inspect)
+
+      errors.each do |error|
+        er_file.puts error
+      end
       er_file.close
+      # File.write(er_file, errors.inspect)
+      # er_file.close
 
       library_folder = 'exported_library/library'
       library_file_name = 'exported_library/library.zip'
@@ -758,7 +759,7 @@ class Question < ApplicationRecord
         question[:difficult_level].present? && question[:answer].present?
       nil
     else
-      "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:lo]} - #{question[:difficult_level]}"
+      "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:lo]} - #{question[:difficult_level]} - #{question[:question_type]}"
     end
   end
 end
