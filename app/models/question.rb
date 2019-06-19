@@ -34,7 +34,6 @@ class Question < ApplicationRecord
     sheet_names = spreadsheet.sheets
     p sheet_names
     error_questions = []
-
     # Sheet 1: LIBRARY_DESCRIPTION
     if sheet_names.include?(DefaultSheetName::LIBRARY_DESCRIPTION)
       lib_des_sheet = spreadsheet.sheet(DefaultSheetName::LIBRARY_DESCRIPTION)
@@ -42,7 +41,7 @@ class Question < ApplicationRecord
       lib_org = lib_des_sheet.a2
       lib_code = lib_des_sheet.a3
     else
-      error = DefaultSheetName::LIBRARY_DESCRIPTION + 'do not existed in the imported file'
+      error = [DefaultSheetName::LIBRARY_DESCRIPTION + 'do not existed in the imported file']
       error_questions += error
     end
 
@@ -51,27 +50,31 @@ class Question < ApplicationRecord
       spreadsheet.default_sheet = DefaultSheetName::CHECKBOXES
       checkbox_questions, error = read_checkbox spreadsheet
     else
-      error = DefaultSheetName::CHECKBOXES + 'do not existed in the imported file'
+      error = [DefaultSheetName::CHECKBOXES + 'do not existed in the imported file']
     end
     error_questions += error
+
+    logger.info 'error_questions.inspect'
+    logger.info error_questions.inspect
 
     # Sheet 3: Multiple Choice-Drop Down questions
     if sheet_names.include?(DefaultSheetName::MULTIPLE_CHOICE_DROPDOWN)
       spreadsheet.default_sheet = DefaultSheetName::MULTIPLE_CHOICE_DROPDOWN
       multiple_choice_dropdown_questions, error = read_multiple_choice spreadsheet
-      error_questions += error
     else
-      error = DefaultSheetName::MULTIPLE_CHOICE_DROPDOWN + 'do not existed in the imported file'
+      error = [DefaultSheetName::MULTIPLE_CHOICE_DROPDOWN + 'do not existed in the imported file']
     end
     error_questions += error
+
+    logger.info 'error_questions.inspect'
+    logger.info error_questions.inspect
 
     # Sheet 4: Numerical Input questions
     if sheet_names.include?(DefaultSheetName::NUMERICAL_INPUT)
       spreadsheet.default_sheet = DefaultSheetName::NUMERICAL_INPUT
       numerical_input_questions, error = read_numerical spreadsheet
-      error_questions += error
     else
-      error = DefaultSheetName::NUMERICAL_INPUT + 'do not existed in the imported file'
+      error = [DefaultSheetName::NUMERICAL_INPUT + 'do not existed in the imported file']
     end
     error_questions += error
 
@@ -79,9 +82,8 @@ class Question < ApplicationRecord
     if sheet_names.include?(DefaultSheetName::TEXT_INPUT)
       spreadsheet.default_sheet = DefaultSheetName::TEXT_INPUT
       text_input_questions, error = read_text_input spreadsheet
-      error_questions += error
     else
-      error = DefaultSheetName::TEXT_INPUT + 'do not existed in the imported file'
+      error = [DefaultSheetName::TEXT_INPUT + 'do not existed in the imported file']
     end
     error_questions += error
 
@@ -101,8 +103,6 @@ class Question < ApplicationRecord
         er_file.puts error
       end
       er_file.close
-      # File.write(er_file, errors.inspect)
-      # er_file.close
 
       library_folder = 'exported_library/library'
       library_file_name = 'exported_library/library.zip'
@@ -207,22 +207,14 @@ class Question < ApplicationRecord
   end
 
   def self.parse_to_xml(question, folder)
-    # logger.info 'parse_to_xml'
-    # logger.info question.inspect
-
     case question[:question_type]
     when QuestionType::CHECKBOX
-      logger.info 'parse_to_xml_checkbox'
-      logger.info question.inspect
       write_xml_checkbox question, folder
     when QuestionType::MULTIPLE_CHOICE
-      logger.info 'parse_to_xml_multiple_choice'
       write_xml_multiple_choice question, folder
     when QuestionType::NUMERICAL
-      logger.info 'parse_to_xml_numerical_input'
       write_xml_numerical question, folder
     when QuestionType::TEXT_INPUT
-      logger.info 'parse_to_xml_text_input'
       write_xml_text_input question, folder
     end
   end
@@ -242,10 +234,7 @@ class Question < ApplicationRecord
         errors.append errors?(question)
       end
     end
-    # logging
-    logger.info 'checkbox question size'
-    logger.info questions.size
-    logger.info questions.inspect
+
     [questions, errors]
   end
 
@@ -264,10 +253,7 @@ class Question < ApplicationRecord
         errors.append errors?(question)
       end
     end
-    # logging
-    logger.info 'multiple size question size'
-    logger.info questions.size
-    logger.info questions.inspect
+
     [questions, errors]
   end
 
@@ -286,10 +272,7 @@ class Question < ApplicationRecord
         errors.append errors?(question)
       end
     end
-    # logging
-    # logger.info 'numerical question size'
-    # logger.info questions.size
-    # logger.info questions.inspect
+
     [questions, errors]
   end
 
@@ -308,10 +291,7 @@ class Question < ApplicationRecord
         errors.append errors?(question)
       end
     end
-    # logging
-    # logger.info 'text input question size'
-    # logger.info questions.size
-    # logger.info questions.inspect
+
     [questions, errors]
   end
 
@@ -389,15 +369,11 @@ class Question < ApplicationRecord
       end
     end
 
-    # logger.info 'builder xml'
-    # logger.info builder.doc.root.to_xml
-
     filename = folder + '/' + question[:difficult_level] + question[:tt] + '.xml'
     begin
       outfile = File.new(filename, 'w+')
       File.write(outfile, builder.doc.root.to_xml)
       outfile.close
-        # logger.info 'create file sucessfullyy'
     rescue Errno::ENOENT => e
       logger.info "Caught the exception: #{e}"
     end
@@ -477,15 +453,11 @@ class Question < ApplicationRecord
       end
     end
 
-    # logger.info 'builder xml multiple choice dropdown'
-    # logger.info builder.doc.root.to_xml
-
     filename = folder + '/' + question[:difficult_level] + question[:tt] + '.xml'
     begin
       outfile = File.new(filename, 'w+')
       File.write(outfile, builder.doc.root.to_xml)
       outfile.close
-        # logger.info 'create file successfully'
     rescue Errno::ENOENT => e
       logger.info "Caught the exception: #{e}"
     end
@@ -515,15 +487,11 @@ class Question < ApplicationRecord
       end
     end
 
-    # logger.info 'builder xml numerical input'
-    # logger.info builder.doc.root.to_xml
-
     filename = folder + '/' + question[:difficult_level] + question[:tt] + '.xml'
     begin
       outfile = File.new(filename, 'w+')
       File.write(outfile, builder.doc.root.to_xml)
       outfile.close
-        # logger.info 'create file successfully'
     rescue Errno::ENOENT => e
       logger.info "Caught the exception: #{e}"
     end
@@ -547,15 +515,11 @@ class Question < ApplicationRecord
       end
     end
 
-    # logger.info 'builder xml text input'
-    # logger.info builder.doc.root.to_xml
-
     filename = folder + '/' + question[:difficult_level] + question[:tt] + '.xml'
     begin
       outfile = File.new(filename, 'w+')
       File.write(outfile, builder.doc.root.to_xml)
       outfile.close
-        # logger.info 'create file successfully'
     rescue Errno::ENOENT => e
       logger.info "Caught the exception: #{e}"
     end
@@ -572,8 +536,6 @@ class Question < ApplicationRecord
         end
       end
     end
-    # logger.info 'builder xml text input'
-    # logger.info builder.doc.root.to_xml
 
     # Create library.xml
     filename = folder + '/' + 'library.xml'
@@ -581,7 +543,6 @@ class Question < ApplicationRecord
       outfile = File.new(filename, 'w+')
       File.write(outfile, builder.doc.root.to_xml)
       outfile.close
-        # logger.info 'create file successfully'
     rescue Errno::ENOENT => e
       logger.info "Caught the exception: #{e}"
     end
@@ -595,19 +556,15 @@ class Question < ApplicationRecord
       outfile = File.new(filename, 'w+')
       File.write(outfile, '{}')
       outfile.close
-        # logger.info 'create policies file successfully'
     rescue Errno::ENOENT => e
       logger.info "Caught the exception: #{e}"
     end
   end
 
   def self.zip_recursive(directory, filename)
-    # logger.info directory
     full_file_name = directory + filename + '.tar.gz'
-    # logger.info full_file_name
     zip_file = File.new(full_file_name, 'w+')
     zip_file.close
-    # Minitar.pack(directory, Zlib::GzipWriter.new(File.open(full_file_name), 'wb'))
     Minitar.pack(directory, File.open(full_file_name, 'wb'))
     full_file_name
   end
@@ -759,7 +716,7 @@ class Question < ApplicationRecord
         question[:difficult_level].present? && question[:answer].present?
       nil
     else
-      "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:lo]} - #{question[:difficult_level]} - #{question[:question_type]}"
+      "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:lo]} - #{question[:difficult_level]} - #{question[:answer]} - #{question[:question_type]}"
     end
   end
 end
