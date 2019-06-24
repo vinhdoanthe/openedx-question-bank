@@ -27,7 +27,7 @@ class Question < ApplicationRecord
     TEXT_INPUT = 'Text Input'
   end
 
-  ZIP_FOLDER = 'exported_library/library'
+  ZIP_FOLDER = 'exported_library'
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
@@ -90,6 +90,9 @@ class Question < ApplicationRecord
     # Generating question banks
     generate_question_banks lib_name, lib_org, lib_code, checkbox_questions, multiple_choice_dropdown_questions, numerical_input_questions, text_input_questions
     # Return error questions
+    # zip_folder = ZIP_FOLDER + lib_name + lib_code + lib_org
+    # puts 'zip_folder'
+    # p zip_folder
     create_zip_with_errors(ZIP_FOLDER, error_questions)
   end
 
@@ -104,14 +107,16 @@ class Question < ApplicationRecord
       end
       er_file.close
 
-      library_folder = 'exported_library/library'
-      library_file_name = 'exported_library/library.zip'
-
-      zip_file = File.new(library_file_name, 'w+')
-      zip_file.close
-      Minitar.pack(library_folder, File.open(library_file_name, 'wb'))
-      library_file_name
     end
+    library_folder = zip_folder + '/library'
+    library_file_name = zip_folder + '/library.zip'
+
+    zip_file = File.new(library_file_name, 'w+')
+    zip_file.close
+    Minitar.pack(library_folder, File.open(library_file_name, 'wb'))
+    puts 'library_file_name'
+    p library_file_name
+    library_file_name
   end
 
   def self.open_spreadsheet(file)
