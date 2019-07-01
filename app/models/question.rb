@@ -199,6 +199,7 @@ class Question < ApplicationRecord
 
   def self.archive_and_download(list_targz_files)
     library_folder = 'exported_library/library'
+    FileUtils.rm_r library_folder
     library_file_name = 'exported_library/library.zip'
     FileUtils.mkdir_p library_folder
     list_targz_files.each do |file|
@@ -578,40 +579,48 @@ class Question < ApplicationRecord
     lesson_list = []
     list_by_lesson = []
 
-    checkbox_questions.each do |question|
-      if lesson_list.include? question[:lesson]
-      else
-        lesson_list.append(question[:lesson])
-        list_by_lesson[question[:lesson].to_i] = []
+    unless checkbox_questions.nil?
+      checkbox_questions.each do |question|
+        if lesson_list.include? question[:lesson]
+        else
+          lesson_list.append(question[:lesson])
+          list_by_lesson[question[:lesson].to_i] = []
+        end
+        list_by_lesson[question[:lesson].to_i].append(question)
       end
-      list_by_lesson[question[:lesson].to_i].append(question)
     end
 
-    multiple_choice_dropdown_questions.each do |question|
-      if lesson_list.include? question[:lesson]
-      else
-        lesson_list.append(question[:lesson])
-        list_by_lesson[question[:lesson].to_i] = []
+    unless multiple_choice_dropdown_questions.nil?
+      multiple_choice_dropdown_questions.each do |question|
+        if lesson_list.include? question[:lesson]
+        else
+          lesson_list.append(question[:lesson])
+          list_by_lesson[question[:lesson].to_i] = []
+        end
+        list_by_lesson[question[:lesson].to_i].append(question)
       end
-      list_by_lesson[question[:lesson].to_i].append(question)
     end
 
-    numerical_input_questions.each do |question|
-      if lesson_list.include? question[:lesson]
-      else
-        lesson_list.append(question[:lesson])
-        list_by_lesson[question[:lesson].to_i] = []
+    unless numerical_input_questions.nil?
+      numerical_input_questions.each do |question|
+        if lesson_list.include? question[:lesson]
+        else
+          lesson_list.append(question[:lesson])
+          list_by_lesson[question[:lesson].to_i] = []
+        end
+        list_by_lesson[question[:lesson].to_i].append(question)
       end
-      list_by_lesson[question[:lesson].to_i].append(question)
     end
 
-    text_input_questions.each do |question|
-      if lesson_list.include? question[:lesson]
-      else
-        lesson_list.append(question[:lesson])
-        list_by_lesson[question[:lesson].to_i] = []
+    unless text_input_questions.nil?
+      text_input_questions.each do |question|
+        if lesson_list.include? question[:lesson]
+        else
+          lesson_list.append(question[:lesson])
+          list_by_lesson[question[:lesson].to_i] = []
+        end
+        list_by_lesson[question[:lesson].to_i].append(question)
       end
-      list_by_lesson[question[:lesson].to_i].append(question)
     end
 
     list_by_lesson
@@ -706,22 +715,41 @@ class Question < ApplicationRecord
     }
   end
 
+  # def self.valid?(question)
+  #   if question[:tt].present? && question[:course_code].present? &&
+  #       question[:lesson].present? && question[:lo].present? && question[:content].present? &&
+  #       question[:difficult_level].present? && question[:answer].present?
+  #     return true
+  #   end
+  #   false
+  # end
+
   def self.valid?(question)
     if question[:tt].present? && question[:course_code].present? &&
-        question[:lesson].present? && question[:lo].present? && question[:content].present? &&
+        question[:lesson].present? && question[:content].present? &&
         question[:difficult_level].present? && question[:answer].present?
       return true
     end
     false
   end
 
+  # def self.errors?(question)
+  #   if question[:tt].present? && question[:course_code].present? &&
+  #       question[:lesson].present? && question[:content].present? &&
+  #       question[:difficult_level].present? && question[:answer].present?
+  #     nil
+  #   else
+  #     "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:lo]} - #{question[:difficult_level]} - #{question[:answer]} - #{question[:question_type]}"
+  #   end
+  # end
+
   def self.errors?(question)
     if question[:tt].present? && question[:course_code].present? &&
-        question[:lesson].present? && question[:lo].present? && question[:content].present? &&
+        question[:lesson].present? && question[:content].present? &&
         question[:difficult_level].present? && question[:answer].present?
       nil
     else
-      "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:lo]} - #{question[:difficult_level]} - #{question[:answer]} - #{question[:question_type]}"
+      "#{question[:tt]} - #{question[:course_code]} - #{question[:lesson]} - #{question[:difficult_level]} - #{question[:answer]} - #{question[:question_type]}"
     end
   end
 end
