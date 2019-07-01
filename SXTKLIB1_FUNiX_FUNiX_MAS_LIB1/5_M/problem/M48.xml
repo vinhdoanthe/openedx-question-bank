@@ -1,9 +1,0 @@
-<problem display_name="M48">
-  <multiplechoiceresponse>
-    <label>A more detailed analysis and preparation of resources are performed during the feasibility study</label>
-    <choicegroup>
-      <choice correct="false">1</choice>
-      <choice correct="true">0</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>

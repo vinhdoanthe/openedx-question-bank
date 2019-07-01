@@ -1,6 +1,0 @@
-<library xblock-family="xblock.v1" display_name="SXTKLIB1_16M" org="FUNiX" library="FUNiX_MAS_LIB1_16M">
-  <problem url_name="M169"/>
-  <problem url_name="M189"/>
-  <problem url_name="M190"/>
-  <problem url_name="M191"/>
-</library>

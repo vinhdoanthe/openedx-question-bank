@@ -1,9 +1,0 @@
-<problem display_name="E44">
-  <multiplechoiceresponse>
-    <label>Any prospective project manager scruntinises the information gathered in the initiation</label>
-    <choicegroup>
-      <choice correct="true">1</choice>
-      <choice correct="false">0</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>

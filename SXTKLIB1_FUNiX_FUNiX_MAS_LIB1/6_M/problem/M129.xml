@@ -1,9 +1,0 @@
-<problem display_name="M129">
-  <multiplechoiceresponse>
-    <label>Stupid project managers always use project planning templates as well as project planning software with document sharing.</label>
-    <choicegroup>
-      <choice correct="false">1</choice>
-      <choice correct="false">0</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>

@@ -1,9 +1,0 @@
-<problem display_name="E68">
-  <multiplechoiceresponse>
-    <label>Three documents: Scope statement, Work breakdown structure and Activity list have the same represented format and different information</label>
-    <choicegroup>
-      <choice correct="true">1</choice>
-      <choice correct="false">0</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>

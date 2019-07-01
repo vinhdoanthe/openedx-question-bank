@@ -4,6 +4,7 @@ class Question < ApplicationRecord
   require 'fileutils'
   require 'minitar'
   require 'zlib'
+  require 'securerandom'
 
   module QuestionType
     CHECKBOX = 'checkbox'
@@ -26,8 +27,6 @@ class Question < ApplicationRecord
     NUMERICAL_INPUT = 'Numerical Input'
     TEXT_INPUT = 'Text Input'
   end
-
-  ZIP_FOLDER = 'exported_library'
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
@@ -88,15 +87,12 @@ class Question < ApplicationRecord
     error_questions += error
 
     # Generating question banks
-    generate_question_banks lib_name, lib_org, lib_code, checkbox_questions, multiple_choice_dropdown_questions, numerical_input_questions, text_input_questions
+    folder, zip_file = generate_question_banks lib_name, lib_org, lib_code, checkbox_questions, multiple_choice_dropdown_questions, numerical_input_questions, text_input_questions
     # Return error questions
-    # zip_folder = ZIP_FOLDER + lib_name + lib_code + lib_org
-    # puts 'zip_folder'
-    # p zip_folder
-    create_zip_with_errors(ZIP_FOLDER, error_questions)
+    create_zip_with_errors(folder, error_questions, zip_file)
   end
 
-  def self.create_zip_with_errors zip_folder, errors
+  def self.create_zip_with_errors zip_folder, errors, zip_file
     unless errors.empty?
       logger.info errors.inspect
       er_file_name = zip_folder + '/' + 'errors.txt'
@@ -106,17 +102,14 @@ class Question < ApplicationRecord
         er_file.puts error
       end
       er_file.close
-
     end
-    library_folder = zip_folder + '/library'
-    library_file_name = zip_folder + '/library.zip'
 
-    zip_file = File.new(library_file_name, 'w+')
-    zip_file.close
-    Minitar.pack(library_folder, File.open(library_file_name, 'wb'))
-    puts 'library_file_name'
-    p library_file_name
-    library_file_name
+    zipped_file = File.new(zip_file, 'w+')
+    zipped_file.close
+    Minitar.pack(zip_folder, File.open(zip_file, 'wb'))
+    puts 'zip_file'
+    p zip_file
+    zip_file
   end
 
   def self.open_spreadsheet(file)
@@ -168,7 +161,9 @@ class Question < ApplicationRecord
       end
     end
 
-    archive_and_download list_tar_gz_files
+    folder, file = archive_and_download list_tar_gz_files
+    FileUtils.rm_rf master_folder
+    [folder, file]
   end
 
   def self.generate_question_bank(lib_name, lib_org, lib_code, questions)
@@ -198,9 +193,9 @@ class Question < ApplicationRecord
   end
 
   def self.archive_and_download(list_targz_files)
-    library_folder = 'exported_library/library'
-    FileUtils.rm_r library_folder
-    library_file_name = 'exported_library/library.zip'
+    uuid = SecureRandom.uuid
+    library_folder = uuid + '/library'
+    library_file_name = uuid + '/library.zip'
     FileUtils.mkdir_p library_folder
     list_targz_files.each do |file|
       FileUtils.mv(file, library_folder)
@@ -209,7 +204,7 @@ class Question < ApplicationRecord
     zip_file = File.new(library_file_name, 'w+')
     zip_file.close
     Minitar.pack(library_folder, File.open(library_file_name, 'wb'))
-    library_file_name
+    [library_folder, library_file_name]
   end
 
   def self.parse_to_xml(question, folder)

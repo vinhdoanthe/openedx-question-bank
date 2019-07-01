@@ -1,9 +1,0 @@
-<problem display_name="E79">
-  <multiplechoiceresponse>
-    <label>A Finish to Finish relationship of tasks is the relation of two tasks in which if one task is finished, another task will be finished immediately.</label>
-    <choicegroup>
-      <choice correct="true">1</choice>
-      <choice correct="false">0</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>

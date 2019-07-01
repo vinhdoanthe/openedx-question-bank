@@ -1,9 +1,0 @@
-<problem display_name="E101">
-  <multiplechoiceresponse>
-    <label>Decomposing a task is the second steps of creating the network diagram.</label>
-    <choicegroup>
-      <choice correct="false">1</choice>
-      <choice correct="true">0</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>

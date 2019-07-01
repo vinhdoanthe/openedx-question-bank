@@ -1,9 +1,0 @@
-<problem display_name="M106">
-  <multiplechoiceresponse>
-    <label>Critical path is the term used to describe the task if it is lengthened or shortened, it affects to the project ending.</label>
-    <choicegroup>
-      <choice correct="true">1</choice>
-      <choice correct="false">0</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>

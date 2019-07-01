@@ -1,9 +1,0 @@
-<problem display_name="M196">
-  <multiplechoiceresponse>
-    <label>There is no value&#xA0;in helping our teams learn better software engineering practices driven by agile, including such things as collective ownership/peer review/pair programming, emergent design, continuous integration, single code line, test-driven development and test automation</label>
-    <choicegroup>
-      <choice correct="true">1</choice>
-      <choice correct="false">0</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>

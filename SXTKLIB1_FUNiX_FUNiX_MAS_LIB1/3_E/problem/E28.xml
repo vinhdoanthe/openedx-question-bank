@@ -1,9 +1,0 @@
-<problem display_name="E28">
-  <multiplechoiceresponse>
-    <label>The team members and project manager work in the same delivery process in project management life cycle?</label>
-    <choicegroup>
-      <choice correct="true">0</choice>
-      <choice correct="false">1</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>

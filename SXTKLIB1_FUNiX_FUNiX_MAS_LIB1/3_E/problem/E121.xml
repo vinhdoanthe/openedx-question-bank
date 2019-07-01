@@ -1,9 +1,0 @@
-<problem display_name="E121">
-  <multiplechoiceresponse>
-    <label>Monitoring and Controlling process group is runs in parallel to Executing Process.</label>
-    <choicegroup>
-      <choice correct="false">1</choice>
-      <choice correct="false">0</choice>
-    </choicegroup>
-  </multiplechoiceresponse>
-</problem>
