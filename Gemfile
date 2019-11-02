@@ -5,7 +5,7 @@ ruby '2.5.1'
 
 gem "roo", "~> 2.8.0"
 gem 'minitar', '~> 0.8'
-gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'nokogiri', '~> 1.10'
 
 gem 'capistrano', '~> 3.7', '>= 3.7.1'
 gem 'capistrano-rails', '~> 1.2'
